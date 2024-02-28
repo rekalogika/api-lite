@@ -54,12 +54,13 @@ jobs:
         SYMFONY_REQUIRE: ${{ matrix.symfony }}
 
     - name: Run psalm
-      run: vendor/bin/psalm
+      run: make psalm
 
     - name: Run phpstan
-      run: vendor/bin/phpstan analyse
+      run: make phpstan
 
     - name: Run phpunit
       run: |
         export SYMFONY_DEPRECATIONS_HELPER='max[direct]=0'
-        vendor/bin/phpunit --testdox
+        make testprepare
+        make phpunit
