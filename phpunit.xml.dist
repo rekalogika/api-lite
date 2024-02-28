@@ -9,6 +9,9 @@
         failOnWarning="false"
         cacheDirectory=".phpunit.cache"
         beStrictAboutCoverageMetadata="true"
+        displayDetailsOnTestsThatTriggerDeprecations="true"
+        displayDetailsOnTestsThatTriggerErrors="true"
+        displayDetailsOnTestsThatTriggerNotices="true"
         displayDetailsOnTestsThatTriggerWarnings="true">
     <php>
         <ini
