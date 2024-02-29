@@ -34,7 +34,7 @@ use Symfony\Contracts\Service\ServiceSubscriberInterface;
 
 abstract class AbstractState implements ServiceSubscriberInterface
 {
-    private ContainerInterface $container;
+    protected ?ContainerInterface $container = null;
 
     #[Required]
     public function setContainer(ContainerInterface $container): void
@@ -60,7 +60,7 @@ abstract class AbstractState implements ServiceSubscriberInterface
      */
     private function get(string $service): object
     {
-        $result = $this->container->get($service);
+        $result = $this->container?->get($service);
         assert($result instanceof $service);
 
         return $result;
