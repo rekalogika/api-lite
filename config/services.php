@@ -55,7 +55,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->args([
             '$mapper' => service(MapperInterface::class),
             '$objectCacheFactory' => service('rekalogika.mapper.object_cache_factory')
-        ]);
+        ])
+        ->tag('kernel.reset', ['method' => 'reset']);
 
     $services
         ->set(ApiCollectionMapperInterface::class, ApiCollectionMapper::class)
