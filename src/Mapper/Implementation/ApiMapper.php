@@ -11,8 +11,9 @@ declare(strict_types=1);
  * that was distributed with this source code.
  */
 
-namespace Rekalogika\ApiLite\Mapper;
+namespace Rekalogika\ApiLite\Mapper\Implementation;
 
+use Rekalogika\ApiLite\Mapper\ApiMapperInterface;
 use Rekalogika\Mapper\Context\Context;
 use Rekalogika\Mapper\MapperInterface;
 use Rekalogika\Mapper\ObjectCache\ObjectCacheFactoryInterface;
@@ -20,7 +21,7 @@ use Rekalogika\Mapper\Transformer\Context\PresetMapping;
 use Rekalogika\Mapper\Transformer\Context\PresetMappingFactory;
 use Symfony\Contracts\Service\ResetInterface;
 
-final class ApiMapper implements MapperInterface, ResetInterface
+final class ApiMapper implements ApiMapperInterface, ResetInterface
 {
     private PresetMapping $presetMapping;
 

@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Rekalogika\ApiLite\Mapper;
 
-use Rekalogika\ApiLite\Exception\RuntimeException;
+use Rekalogika\Mapper\MapperInterface;
 
-final class MappingNotCachedException extends RuntimeException
+interface ApiMapperInterface extends MapperInterface
 {
 }

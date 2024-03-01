@@ -20,7 +20,7 @@ use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Rekalogika\ApiLite\Exception\LogicException;
 use Rekalogika\ApiLite\Exception\NotFoundException;
-use Rekalogika\ApiLite\Mapper\ApiMapper;
+use Rekalogika\ApiLite\Mapper\Implementation\ApiMapper;
 use Rekalogika\ApiLite\Paginator\MappingPaginatorDecorator;
 use Rekalogika\ApiLite\PaginatorApplier\Exception\UnsupportedObjectException;
 use Rekalogika\ApiLite\PaginatorApplier\PaginatorApplierInterface;

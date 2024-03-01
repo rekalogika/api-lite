@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Rekalogika\ApiLite\Paginator;
 
 use ApiPlatform\State\Pagination\PaginatorInterface;
-use Rekalogika\ApiLite\Mapper\ApiMapper;
+use Rekalogika\ApiLite\Mapper\Implementation\ApiMapper;
 use Rekalogika\Mapper\Context\Context;
 
 /**
