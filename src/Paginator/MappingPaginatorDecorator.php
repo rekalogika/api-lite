@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Rekalogika\ApiLite\Paginator;
 
 use ApiPlatform\State\Pagination\PaginatorInterface;
-use Rekalogika\ApiLite\Mapper\Implementation\ApiMapper;
+use Rekalogika\ApiLite\Mapper\ApiMapperInterface;
 use Rekalogika\Mapper\Context\Context;
 
 /**
@@ -30,7 +30,7 @@ final class MappingPaginatorDecorator implements \IteratorAggregate, PaginatorIn
      */
     public function __construct(
         private PaginatorInterface $paginator,
-        private ApiMapper $mapper,
+        private ApiMapperInterface $mapper,
         private string $targetClass,
         private ?Context $context = null,
     ) {
