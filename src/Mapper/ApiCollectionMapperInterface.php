@@ -21,13 +21,13 @@ interface ApiCollectionMapperInterface
 {
     /**
      * @template TOutput of object
-     * @param class-string<TOutput> $target
+     * @param null|class-string<TOutput> $target
      * @param array<string,mixed> $context
-     * @return PaginatorInterface<TOutput>
+     * @return ($target is null ? PaginatorInterface<object> : PaginatorInterface<TOutput>)
      */
     public function mapCollection(
         object $collection,
-        string $target,
+        ?string $target,
         Operation $operation,
         array $context = [],
         ?Context $mapperContext = null,
