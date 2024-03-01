@@ -37,23 +37,31 @@ final class ApiCollectionMapper implements ApiCollectionMapperInterface
 
     public function mapCollection(
         object $collection,
-        string $target,
+        ?string $target,
         Operation $operation,
         array $context = [],
         ?Context $mapperContext = null
     ): PaginatorInterface {
         if ($collection instanceof PaginatorInterface) {
+            /** @var PaginatorInterface<object> $paginator */
             $paginator = $collection;
         } else {
             $paginator = $this->paginate($collection, $operation, $context);
         }
 
-        return new MappingPaginatorDecorator(
-            paginator: $paginator,
-            mapper: $this->mapper,
-            targetClass: $target,
-            context: $mapperContext,
-        );
+        if ($target === null) {
+            return $paginator;
+        } else {
+            /** @var PaginatorInterface<object> */
+            $result = new MappingPaginatorDecorator(
+                paginator: $paginator,
+                mapper: $this->mapper,
+                targetClass: $target,
+                context: $mapperContext,
+            );
+
+            return $result;
+        }
     }
 
     /**

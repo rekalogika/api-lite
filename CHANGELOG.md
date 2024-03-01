@@ -6,6 +6,7 @@
   child classes
 * build: Create `ApiMapperInterface` and use it for the service ID.
 * refactor: Move `mapCollection()` to separate interface.
+* refactor(`ApiCollectionMapper`): `mapCollection()` now accepts null target.
 
 ## 0.5.0
 
