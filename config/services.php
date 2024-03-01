@@ -16,7 +16,7 @@ use Rekalogika\ApiLite\Mapper\ApiCollectionMapperInterface;
 use Rekalogika\ApiLite\Mapper\ApiMapperInterface;
 use Rekalogika\ApiLite\Mapper\Implementation\ApiCollectionMapper;
 use Rekalogika\ApiLite\Mapper\Implementation\ApiMapper;
-use Rekalogika\ApiLite\PaginatorApplier\Implementation\ChainObjectPaginatorApplier as ChainPaginatorApplier;
+use Rekalogika\ApiLite\PaginatorApplier\Implementation\ChainObjectPaginatorApplier;
 use Rekalogika\ApiLite\PaginatorApplier\Implementation\CollectionPaginatorApplier;
 use Rekalogika\ApiLite\PaginatorApplier\Implementation\DoctrineOrmPaginatorApplier;
 use Rekalogika\ApiLite\PaginatorApplier\Implementation\SelectablePaginatorApplier;
@@ -31,7 +31,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services
-        ->set('rekalogika.api_lite.paginator_applier.chain', ChainPaginatorApplier::class)
+        ->set('rekalogika.api_lite.paginator_applier.chain', ChainObjectPaginatorApplier::class)
         ->args([
             tagged_iterator('rekalogika.api_lite.paginator_applier')
         ]);
