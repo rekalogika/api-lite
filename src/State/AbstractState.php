@@ -20,7 +20,7 @@ use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Rekalogika\ApiLite\Exception\LogicException;
 use Rekalogika\ApiLite\Exception\NotFoundException;
-use Rekalogika\ApiLite\Mapper\Implementation\ApiMapper;
+use Rekalogika\ApiLite\Mapper\ApiMapperInterface;
 use Rekalogika\ApiLite\Paginator\MappingPaginatorDecorator;
 use Rekalogika\ApiLite\PaginatorApplier\Exception\UnsupportedObjectException;
 use Rekalogika\ApiLite\PaginatorApplier\PaginatorApplierInterface;
@@ -45,7 +45,7 @@ abstract class AbstractState implements ServiceSubscriberInterface
     public static function getSubscribedServices(): array
     {
         return [
-            ApiMapper::class,
+            ApiMapperInterface::class,
             Pagination::class,
             PaginatorApplierInterface::class,
             AuthorizationCheckerInterface::class => '?' . AuthorizationCheckerInterface::class,
@@ -68,7 +68,7 @@ abstract class AbstractState implements ServiceSubscriberInterface
 
     protected function resetMapper(): void
     {
-        $this->get(ApiMapper::class)->reset();
+        $this->get(ApiMapperInterface::class)->reset();
     }
 
     /**
@@ -78,7 +78,7 @@ abstract class AbstractState implements ServiceSubscriberInterface
      */
     protected function map(object $source, string|object $target, ?Context $context = null): object
     {
-        return $this->get(ApiMapper::class)->map($source, $target, $context);
+        return $this->get(ApiMapperInterface::class)->map($source, $target, $context);
     }
 
     /**
@@ -102,7 +102,7 @@ abstract class AbstractState implements ServiceSubscriberInterface
 
         return new MappingPaginatorDecorator(
             paginator: $paginator,
-            mapper: $this->get(ApiMapper::class),
+            mapper: $this->get(ApiMapperInterface::class),
             targetClass: $target,
             context: $mapperContext,
         );
