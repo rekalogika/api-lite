@@ -13,8 +13,9 @@ declare(strict_types=1);
 
 namespace Rekalogika\ApiLite\Mapper;
 
-use Rekalogika\ApiLite\Exception\RuntimeException;
+use Rekalogika\Mapper\MapperInterface;
+use Symfony\Contracts\Service\ResetInterface;
 
-final class MappingNotCachedException extends RuntimeException
+interface ApiMapperInterface extends MapperInterface, ResetInterface
 {
 }
