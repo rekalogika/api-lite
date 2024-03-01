@@ -14,16 +14,13 @@ declare(strict_types=1);
 namespace Rekalogika\ApiLite\State;
 
 use ApiPlatform\Metadata\Operation;
-use ApiPlatform\State\Pagination\Pagination;
 use ApiPlatform\State\Pagination\PaginatorInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Rekalogika\ApiLite\Exception\LogicException;
 use Rekalogika\ApiLite\Exception\NotFoundException;
+use Rekalogika\ApiLite\Mapper\ApiCollectionMapperInterface;
 use Rekalogika\ApiLite\Mapper\ApiMapperInterface;
-use Rekalogika\ApiLite\Paginator\MappingPaginatorDecorator;
-use Rekalogika\ApiLite\PaginatorApplier\Exception\UnsupportedObjectException;
-use Rekalogika\ApiLite\PaginatorApplier\PaginatorApplierInterface;
 use Rekalogika\Mapper\Context\Context;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -46,8 +43,7 @@ abstract class AbstractState implements ServiceSubscriberInterface
     {
         return [
             ApiMapperInterface::class,
-            Pagination::class,
-            PaginatorApplierInterface::class,
+            ApiCollectionMapperInterface::class,
             AuthorizationCheckerInterface::class => '?' . AuthorizationCheckerInterface::class,
             TokenStorageInterface::class => '?' . TokenStorageInterface::class,
         ];
@@ -76,9 +72,13 @@ abstract class AbstractState implements ServiceSubscriberInterface
      * @param class-string<T>|T $target
      * @return T
      */
-    protected function map(object $source, string|object $target, ?Context $context = null): object
-    {
-        return $this->get(ApiMapperInterface::class)->map($source, $target, $context);
+    protected function map(
+        object $source,
+        string|object $target,
+        ?Context $context = null
+    ): object {
+        return $this->get(ApiMapperInterface::class)
+            ->map($source, $target, $context);
     }
 
     /**
@@ -94,44 +94,15 @@ abstract class AbstractState implements ServiceSubscriberInterface
         array $context = [],
         ?Context $mapperContext = null,
     ): PaginatorInterface {
-        if ($collection instanceof PaginatorInterface) {
-            $paginator = $collection;
-        } else {
-            $paginator = $this->paginate($collection, $operation, $context);
-        }
-
-        return new MappingPaginatorDecorator(
-            paginator: $paginator,
-            mapper: $this->get(ApiMapperInterface::class),
-            targetClass: $target,
-            context: $mapperContext,
-        );
-    }
-
-    /**
-     * @param array<string,mixed> $context
-     * @return PaginatorInterface<object>
-     * @throws UnsupportedObjectException
-     */
-    protected function paginate(
-        object $collection,
-        Operation $operation,
-        array $context
-    ): PaginatorInterface {
-        [$currentPage,, $itemsPerPage] = $this->getPagination($operation, $context);
-
-        return $this->get(PaginatorApplierInterface::class)
-            ->applyPaginator($collection, $currentPage, $itemsPerPage);
-    }
-
-    /**
-     * @param array<string,mixed> $context
-     * @return array{int,int,int}
-     */
-    private function getPagination(Operation $operation, array $context): array
-    {
-        /** @var array{int,int,int} */
-        return $this->get(Pagination::class)->getPagination($operation, $context);
+        return $this
+            ->get(ApiCollectionMapperInterface::class)
+            ->mapCollection(
+                $collection,
+                $target,
+                $operation,
+                $context,
+                $mapperContext
+            );
     }
 
     /**

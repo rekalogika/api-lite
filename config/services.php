@@ -11,7 +11,10 @@ declare(strict_types=1);
  * that was distributed with this source code.
  */
 
+use ApiPlatform\State\Pagination\Pagination;
+use Rekalogika\ApiLite\Mapper\ApiCollectionMapperInterface;
 use Rekalogika\ApiLite\Mapper\ApiMapperInterface;
+use Rekalogika\ApiLite\Mapper\Implementation\ApiCollectionMapper;
 use Rekalogika\ApiLite\Mapper\Implementation\ApiMapper;
 use Rekalogika\ApiLite\PaginatorApplier\Implementation\ChainObjectPaginatorApplier as ChainPaginatorApplier;
 use Rekalogika\ApiLite\PaginatorApplier\Implementation\CollectionPaginatorApplier;
@@ -52,5 +55,13 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->args([
             '$mapper' => service(MapperInterface::class),
             '$objectCacheFactory' => service('rekalogika.mapper.object_cache_factory')
+        ]);
+
+    $services
+        ->set(ApiCollectionMapperInterface::class, ApiCollectionMapper::class)
+        ->args([
+            '$mapper' => service(ApiMapperInterface::class),
+            '$pagination' => service(Pagination::class),
+            '$paginatorApplier' => service(PaginatorApplierInterface::class),
         ]);
 };

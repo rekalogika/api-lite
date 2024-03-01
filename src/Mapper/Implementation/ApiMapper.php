@@ -27,7 +27,7 @@ final class ApiMapper implements ApiMapperInterface, ResetInterface
 
     public function __construct(
         private MapperInterface $mapper,
-        private ObjectCacheFactoryInterface $objectCacheFactory
+        private ObjectCacheFactoryInterface $objectCacheFactory,
     ) {
         $this->presetMapping = new PresetMapping();
     }
