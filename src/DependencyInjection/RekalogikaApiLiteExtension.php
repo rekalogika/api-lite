@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Rekalogika\ApiLite\DependencyInjection;
 
-use App\Kernel;
 use Rekalogika\ApiLite\PaginatorApplier\PaginatorApplierInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -28,19 +27,10 @@ final class RekalogikaApiLiteExtension extends Extension
     public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new PhpFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
-        $loaderTest = new PhpFileLoader($container, new FileLocator(__DIR__ . '/../../tests/config'));
 
         // load services
 
         $loader->import('services.php');
-
-        // load service configuration for test environment
-
-        $env = $container->getParameter('kernel.environment');
-
-        if ($env === 'test' && class_exists(Kernel::class)) {
-            $loaderTest->import('services.php');
-        }
 
         // autoconfiguration
 
