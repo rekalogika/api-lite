@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.2
+
+* fix(`ApiMapper`): Missing `kernel.reset` tag.
+
 ## 0.5.1
 
 * fix(`AbstractState`): Make `$container` protected, so it can be extended by
