@@ -22,6 +22,9 @@ use App\ApiState\Admin\Book\BookRemoveProcessor;
 use App\ApiState\Admin\Book\BookUpdateProcessor;
 use Rekalogika\Mapper\CollectionInterface;
 use Symfony\Component\Uid\Uuid;
+use ApiPlatform\OpenApi\Model\Parameter;
+use App\ApiState\Admin\Book\BookCollectionWithSearchProvider;
+use PHPUnit\Framework\MockObject\Rule\Parameters;
 
 #[ApiResource(
     shortName: 'Admin/Book',
@@ -34,6 +37,21 @@ use Symfony\Component\Uid\Uuid;
         new GetCollection(
             uriTemplate: '/books',
             provider: BookCollectionProvider::class,
+        ),
+        new GetCollection(
+            uriTemplate: '/books-with-search',
+            provider: BookCollectionWithSearchProvider::class,
+            openapi: new Operation(
+                parameters: [
+                    new Parameter(
+                        name: 'search',
+                        in: 'query',
+                        description: 'Search for books',
+                        required: false,
+                        schema: ['type' => 'string']
+                    )
+                ]
+            )
         ),
         new Post(
             uriTemplate: '/books',

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.3
+
+* test: Add manual filtering example.
+
 ## 0.5.2
 
 * fix(`ApiMapper`): Missing `kernel.reset` tag.
