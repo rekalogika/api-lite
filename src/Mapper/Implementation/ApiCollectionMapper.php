@@ -41,7 +41,7 @@ final class ApiCollectionMapper implements ApiCollectionMapperInterface
         Operation $operation,
         array $context = [],
         ?Context $mapperContext = null
-    ): PaginatorInterface {
+    ): iterable {
         if ($collection instanceof PaginatorInterface) {
             /** @var PaginatorInterface<object> $paginator */
             $paginator = $collection;
@@ -51,7 +51,7 @@ final class ApiCollectionMapper implements ApiCollectionMapperInterface
 
         if ($target === null) {
             return $paginator;
-        } else {
+        } elseif ($paginator instanceof PaginatorInterface) {
             /** @var PaginatorInterface<object> */
             $result = new MappingPaginatorDecorator(
                 paginator: $paginator,
@@ -62,18 +62,20 @@ final class ApiCollectionMapper implements ApiCollectionMapperInterface
 
             return $result;
         }
+        throw new \InvalidArgumentException('Invalid target class');
+
     }
 
     /**
      * @param array<string,mixed> $context
-     * @return PaginatorInterface<object>
+     * @return iterable<object>
      * @throws UnsupportedObjectException
      */
     private function paginate(
         object $collection,
         Operation $operation,
         array $context
-    ): PaginatorInterface {
+    ): iterable {
         [$currentPage,, $itemsPerPage] = $this->getPagination($operation, $context);
 
         return $this->paginatorApplier

@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Rekalogika\ApiLite\PaginatorApplier\Implementation;
 
-use ApiPlatform\State\Pagination\PaginatorInterface;
 use Doctrine\Common\Collections\ReadableCollection;
 use Rekalogika\ApiLite\Paginator\CollectionPaginator;
 use Rekalogika\ApiLite\PaginatorApplier\Exception\UnsupportedObjectException;
@@ -29,7 +28,7 @@ class CollectionPaginatorApplier implements PaginatorApplierInterface
         object $object,
         int $currentPage,
         int $itemsPerPage
-    ): PaginatorInterface {
+    ): iterable {
         /** @psalm-suppress DocblockTypeContradiction */
         if (!$object instanceof ReadableCollection) {
             /** @psalm-suppress NoValue */

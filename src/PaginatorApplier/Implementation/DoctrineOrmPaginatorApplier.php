@@ -31,7 +31,7 @@ class DoctrineOrmPaginatorApplier implements PaginatorApplierInterface
         object $object,
         int $currentPage,
         int $itemsPerPage
-    ): PaginatorInterface {
+    ): iterable {
         if (
             !$object instanceof Query
             && !$object instanceof QueryBuilder

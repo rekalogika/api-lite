@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Rekalogika\ApiLite\State;
 
 use ApiPlatform\Metadata\Operation;
-use ApiPlatform\State\Pagination\PaginatorInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Rekalogika\ApiLite\Exception\LogicException;
@@ -85,7 +84,7 @@ abstract class AbstractState implements ServiceSubscriberInterface
      * @template TOutput of object
      * @param class-string<TOutput> $target
      * @param array<string,mixed> $context
-     * @return PaginatorInterface<TOutput>
+     * @return iterable<TOutput>
      */
     protected function mapCollection(
         object $collection,
@@ -93,7 +92,7 @@ abstract class AbstractState implements ServiceSubscriberInterface
         Operation $operation,
         array $context = [],
         ?Context $mapperContext = null,
-    ): PaginatorInterface {
+    ): iterable {
         return $this
             ->get(ApiCollectionMapperInterface::class)
             ->mapCollection(
