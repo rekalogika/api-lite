@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Rekalogika\ApiLite\Mapper;
 
 use ApiPlatform\Metadata\Operation;
-use ApiPlatform\State\Pagination\PaginatorInterface;
 use Rekalogika\Mapper\Context\Context;
 
 interface ApiCollectionMapperInterface
@@ -23,7 +22,7 @@ interface ApiCollectionMapperInterface
      * @template TOutput of object
      * @param null|class-string<TOutput> $target
      * @param array<string,mixed> $context
-     * @return ($target is null ? PaginatorInterface<object> : PaginatorInterface<TOutput>)
+     * @return ($target is null ? iterable<object> : iterable<TOutput>)
      */
     public function mapCollection(
         object $collection,
@@ -31,5 +30,5 @@ interface ApiCollectionMapperInterface
         Operation $operation,
         array $context = [],
         ?Context $mapperContext = null,
-    ): PaginatorInterface;
+    ): iterable;
 }

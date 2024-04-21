@@ -37,5 +37,10 @@
                 <directory name="tests/src/Factory/" />
             </errorLevel>
         </ImplementedReturnTypeMismatch>
+        <InvalidReturnStatement>
+            <errorLevel type="suppress">
+                <directory name="tests/src/ApiState/" />
+            </errorLevel>
+        </InvalidReturnStatement>
     </issueHandlers>
 </psalm>

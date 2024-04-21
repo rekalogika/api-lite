@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Rekalogika\ApiLite\PaginatorApplier\Implementation;
 
-use ApiPlatform\State\Pagination\PaginatorInterface;
 use Pagerfanta\Adapter\AdapterInterface;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\PagerfantaInterface;
@@ -31,7 +30,7 @@ class PagerfantaPaginatorApplier implements PaginatorApplierInterface
         object $object,
         int $currentPage,
         int $itemsPerPage
-    ): PaginatorInterface {
+    ): iterable {
         if ($object instanceof AdapterInterface) {
             $object = new Pagerfanta($object);
         }
