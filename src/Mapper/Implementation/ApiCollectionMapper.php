@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Rekalogika\ApiLite\Mapper\Implementation;
 
 use ApiPlatform\Metadata\Operation;
-use ApiPlatform\State\Pagination\Pagination;
 use ApiPlatform\State\Pagination\PaginatorInterface;
 use Rekalogika\ApiLite\Mapper\ApiCollectionMapperInterface;
 use Rekalogika\ApiLite\Mapper\ApiMapperInterface;
@@ -30,7 +29,6 @@ final class ApiCollectionMapper implements ApiCollectionMapperInterface
      */
     public function __construct(
         private ApiMapperInterface $mapper,
-        private Pagination $pagination,
         private PaginatorApplierInterface $paginatorApplier,
     ) {
     }
@@ -76,19 +74,7 @@ final class ApiCollectionMapper implements ApiCollectionMapperInterface
         Operation $operation,
         array $context
     ): iterable {
-        [$currentPage,, $itemsPerPage] = $this->getPagination($operation, $context);
-
         return $this->paginatorApplier
-            ->applyPaginator($collection, $currentPage, $itemsPerPage);
-    }
-
-    /**
-     * @param array<string,mixed> $context
-     * @return array{int,int,int}
-     */
-    private function getPagination(Operation $operation, array $context): array
-    {
-        /** @var array{int,int,int} */
-        return $this->pagination->getPagination($operation, $context);
+            ->applyPaginator($collection, $operation, $context);
     }
 }

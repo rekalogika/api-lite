@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Rekalogika\ApiLite\PaginatorApplier;
 
+use ApiPlatform\Metadata\Operation;
 use Rekalogika\ApiLite\PaginatorApplier\Exception\UnsupportedObjectException;
 
 /**
@@ -21,12 +22,13 @@ use Rekalogika\ApiLite\PaginatorApplier\Exception\UnsupportedObjectException;
 interface PaginatorApplierInterface
 {
     /**
+     * @param array<string,mixed> $context
      * @return iterable<TOutputMember>
      * @throws UnsupportedObjectException
      */
     public function applyPaginator(
         object $object,
-        int $currentPage,
-        int $itemsPerPage
+        Operation $operation,
+        array $context,
     ): iterable;
 }

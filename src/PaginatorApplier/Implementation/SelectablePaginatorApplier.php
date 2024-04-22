@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Rekalogika\ApiLite\PaginatorApplier\Implementation;
 
+use ApiPlatform\Metadata\Operation;
+use ApiPlatform\State\Pagination\Pagination;
 use Doctrine\Common\Collections\Selectable;
 use Rekalogika\ApiLite\Paginator\SelectablePaginator;
 use Rekalogika\ApiLite\PaginatorApplier\Exception\UnsupportedObjectException;
@@ -24,16 +26,24 @@ use Rekalogika\ApiLite\PaginatorApplier\PaginatorApplierInterface;
  */
 class SelectablePaginatorApplier implements PaginatorApplierInterface
 {
+    use PaginationTrait;
+
+    public function __construct(private Pagination $pagination)
+    {
+    }
+
     public function applyPaginator(
         object $object,
-        int $currentPage,
-        int $itemsPerPage
+        Operation $operation,
+        array $context,
     ): iterable {
         /** @psalm-suppress DocblockTypeContradiction */
         if (!$object instanceof Selectable) {
             /** @psalm-suppress NoValue */
             throw new UnsupportedObjectException($this, $object);
         }
+
+        [$currentPage,, $itemsPerPage] = $this->getPagination($operation, $context);
 
         /**
          * @var Selectable<array-key,TOutputMember> $object

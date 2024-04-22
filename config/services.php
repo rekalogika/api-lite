@@ -38,14 +38,23 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services
         ->set(CollectionPaginatorApplier::class)
+        ->args([
+            '$pagination' => service(Pagination::class),
+        ])
         ->tag('rekalogika.api_lite.paginator_applier');
 
     $services
         ->set(SelectablePaginatorApplier::class)
+        ->args([
+            '$pagination' => service(Pagination::class),
+        ])
         ->tag('rekalogika.api_lite.paginator_applier');
 
     $services
         ->set(DoctrineOrmPaginatorApplier::class)
+        ->args([
+            '$pagination' => service(Pagination::class),
+        ])
         ->tag('rekalogika.api_lite.paginator_applier');
 
     $services->alias(PaginatorApplierInterface::class, 'rekalogika.api_lite.paginator_applier.chain');
@@ -62,7 +71,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->set(ApiCollectionMapperInterface::class, ApiCollectionMapper::class)
         ->args([
             '$mapper' => service(ApiMapperInterface::class),
-            '$pagination' => service(Pagination::class),
             '$paginatorApplier' => service(PaginatorApplierInterface::class),
         ]);
 };

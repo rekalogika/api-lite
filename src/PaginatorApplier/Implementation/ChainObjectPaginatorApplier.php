@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Rekalogika\ApiLite\PaginatorApplier\Implementation;
 
+use ApiPlatform\Metadata\Operation;
 use Rekalogika\ApiLite\PaginatorApplier\Exception\UnsupportedObjectException;
 use Rekalogika\ApiLite\PaginatorApplier\PaginatorApplierInterface;
 
@@ -25,18 +26,18 @@ class ChainObjectPaginatorApplier implements PaginatorApplierInterface
      * @param iterable<PaginatorApplierInterface<object>> $objectPaginators
      */
     public function __construct(
-        private iterable $objectPaginators
+        private iterable $objectPaginators,
     ) {
     }
 
     public function applyPaginator(
         object $object,
-        int $currentPage,
-        int $itemsPerPage
+        Operation $operation,
+        array $context,
     ): iterable {
         foreach ($this->objectPaginators as $objectPaginator) {
             try {
-                return $objectPaginator->applyPaginator($object, $currentPage, $itemsPerPage);
+                return $objectPaginator->applyPaginator($object, $operation, $context);
             } catch (UnsupportedObjectException) {
                 continue;
             }
