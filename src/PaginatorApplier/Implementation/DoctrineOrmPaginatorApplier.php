@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Rekalogika\ApiLite\PaginatorApplier\Implementation;
 
 use ApiPlatform\Doctrine\Orm\Paginator as OrmPaginator;
+use ApiPlatform\Metadata\Operation;
+use ApiPlatform\State\Pagination\Pagination;
 use ApiPlatform\State\Pagination\PaginatorInterface;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
@@ -27,10 +29,16 @@ use Rekalogika\ApiLite\PaginatorApplier\PaginatorApplierInterface;
  */
 class DoctrineOrmPaginatorApplier implements PaginatorApplierInterface
 {
+    use PaginationTrait;
+
+    public function __construct(private Pagination $pagination)
+    {
+    }
+
     public function applyPaginator(
         object $object,
-        int $currentPage,
-        int $itemsPerPage
+        Operation $operation,
+        array $context,
     ): iterable {
         if (
             !$object instanceof Query
@@ -38,6 +46,8 @@ class DoctrineOrmPaginatorApplier implements PaginatorApplierInterface
         ) {
             throw new UnsupportedObjectException($this, $object);
         }
+
+        [$currentPage,, $itemsPerPage] = $this->getPagination($operation, $context);
 
         $object->setFirstResult(($currentPage - 1) * $itemsPerPage);
         $object->setMaxResults($itemsPerPage);

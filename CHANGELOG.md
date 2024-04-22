@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.5.4
+
+* refactor: Change return type from `PaginatorInterface` to `iterable` to
+  anticipate future changes.
+* refactor: `PaginatorApplierInterface::applyPaginator()` now takes raw
+  operation and context.
+
 ## 0.5.3
 
 * test: Add manual filtering example.

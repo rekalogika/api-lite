@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Rekalogika\ApiLite\PaginatorApplier\Implementation;
 
+use ApiPlatform\Metadata\Operation;
+use ApiPlatform\State\Pagination\Pagination;
 use Pagerfanta\Adapter\AdapterInterface;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\PagerfantaInterface;
@@ -26,10 +28,16 @@ use Rekalogika\ApiLite\PaginatorApplier\PaginatorApplierInterface;
  */
 class PagerfantaPaginatorApplier implements PaginatorApplierInterface
 {
+    use PaginationTrait;
+
+    public function __construct(private Pagination $pagination)
+    {
+    }
+
     public function applyPaginator(
         object $object,
-        int $currentPage,
-        int $itemsPerPage
+        Operation $operation,
+        array $context,
     ): iterable {
         if ($object instanceof AdapterInterface) {
             $object = new Pagerfanta($object);
@@ -38,6 +46,8 @@ class PagerfantaPaginatorApplier implements PaginatorApplierInterface
         if (!$object instanceof PagerfantaInterface) {
             throw new UnsupportedObjectException($this, $object);
         }
+
+        [$currentPage,, $itemsPerPage] = $this->getPagination($operation, $context);
 
         /** @var PagerfantaInterface<TOutputMember> $object */
 
