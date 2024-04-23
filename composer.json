@@ -23,7 +23,7 @@
         "api-platform/core": "^3.2.12 || ^3.3",
         "doctrine/collections": "^2.2",
         "rekalogika/mapper": "^1.1",
-        "rekalogika/rekapager-api-platform": "^0.8",
+        "rekalogika/rekapager-api-platform": "^0.8.1",
         "rekalogika/rekapager-doctrine-collections-adapter": "^0.8.1",
         "rekalogika/rekapager-doctrine-orm-adapter": "^0.8.1",
         "symfony/dependency-injection": "^6.4 || ^7.0",
