@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.5.4
+## 0.6.0
 
 * refactor: Change return type from `PaginatorInterface` to `iterable` to
   anticipate future changes.
