@@ -33,7 +33,7 @@
     },
     "require-dev": {
         "bnf/phpstan-psr-container": "^1.0",
-        "doctrine/doctrine-bundle": "^2.11.3",
+        "doctrine/doctrine-bundle": "^2.12",
         "doctrine/doctrine-fixtures-bundle": "^3.5",
         "doctrine/orm": "^2.14 || ^3.0",
         "doctrine/persistence": "^3.1",
