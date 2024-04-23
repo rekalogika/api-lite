@@ -31,7 +31,6 @@ jobs:
       with:
         php-version: ${{ matrix.php }}
         extensions: intl
-        tools: flex
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
