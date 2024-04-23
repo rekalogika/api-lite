@@ -9,6 +9,7 @@ use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle;
 use Rekalogika\ApiLite\RekalogikaApiLiteBundle;
 use Rekalogika\Mapper\RekalogikaMapperBundle;
+use Rekalogika\Rekapager\ApiPlatform\RekalogikaRekapagerApiPlatformBundle;
 use Symfony\Bundle\DebugBundle\DebugBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
@@ -45,6 +46,7 @@ class Kernel extends BaseKernel
         yield new DoctrineBundle();
         yield new RekalogikaMapperBundle();
         yield new RekalogikaApiLiteBundle();
+        yield new RekalogikaRekapagerApiPlatformBundle();
         yield new ApiPlatformBundle();
         yield new TwigBundle();
         yield new WebProfilerBundle();

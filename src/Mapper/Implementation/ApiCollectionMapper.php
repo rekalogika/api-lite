@@ -20,7 +20,9 @@ use Rekalogika\ApiLite\Mapper\ApiMapperInterface;
 use Rekalogika\ApiLite\Paginator\MappingPaginatorDecorator;
 use Rekalogika\ApiLite\PaginatorApplier\Exception\UnsupportedObjectException;
 use Rekalogika\ApiLite\PaginatorApplier\PaginatorApplierInterface;
+use Rekalogika\ApiLite\Rekapager\MappingPagerDecorator;
 use Rekalogika\Mapper\Context\Context;
+use Rekalogika\Rekapager\Contracts\TraversablePagerInterface;
 
 final class ApiCollectionMapper implements ApiCollectionMapperInterface
 {
@@ -40,7 +42,10 @@ final class ApiCollectionMapper implements ApiCollectionMapperInterface
         array $context = [],
         ?Context $mapperContext = null
     ): iterable {
-        if ($collection instanceof PaginatorInterface) {
+        if ($collection instanceof TraversablePagerInterface) {
+            /** @var TraversablePagerInterface<array-key,object,object> */
+            $paginator = $collection;
+        } elseif ($collection instanceof PaginatorInterface) {
             /** @var PaginatorInterface<object> $paginator */
             $paginator = $collection;
         } else {
@@ -49,6 +54,17 @@ final class ApiCollectionMapper implements ApiCollectionMapperInterface
 
         if ($target === null) {
             return $paginator;
+        } elseif ($paginator instanceof TraversablePagerInterface) {
+            /**
+             * @var TraversablePagerInterface<array-key,object,object>
+             * @psalm-suppress MixedArgumentTypeCoercion
+             */
+            return new MappingPagerDecorator(
+                pager: $paginator,
+                mapper: $this->mapper,
+                targetClass: $target,
+                context: $mapperContext,
+            );
         } elseif ($paginator instanceof PaginatorInterface) {
             /** @var PaginatorInterface<object> */
             $result = new MappingPaginatorDecorator(

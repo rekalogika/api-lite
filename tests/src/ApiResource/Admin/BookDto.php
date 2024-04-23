@@ -13,18 +13,17 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
 use ApiPlatform\OpenApi\Model\Operation;
+use ApiPlatform\OpenApi\Model\Parameter;
 use App\ApiInput\Admin\BookInputDto;
 use App\ApiState\Admin\Book\BookCheckProcessor;
 use App\ApiState\Admin\Book\BookCollectionProvider;
+use App\ApiState\Admin\Book\BookCollectionWithSearchProvider;
 use App\ApiState\Admin\Book\BookCreateProcessor;
 use App\ApiState\Admin\Book\BookProvider;
 use App\ApiState\Admin\Book\BookRemoveProcessor;
 use App\ApiState\Admin\Book\BookUpdateProcessor;
 use Rekalogika\Mapper\CollectionInterface;
 use Symfony\Component\Uid\Uuid;
-use ApiPlatform\OpenApi\Model\Parameter;
-use App\ApiState\Admin\Book\BookCollectionWithSearchProvider;
-use PHPUnit\Framework\MockObject\Rule\Parameters;
 
 #[ApiResource(
     shortName: 'Admin/Book',
@@ -52,6 +51,13 @@ use PHPUnit\Framework\MockObject\Rule\Parameters;
                     )
                 ]
             )
+        ),
+        new GetCollection(
+            uriTemplate: '/books-with-keyset-pagination',
+            provider: BookCollectionProvider::class,
+            extraProperties: [
+                'api_lite_rekapager' => true
+            ]
         ),
         new Post(
             uriTemplate: '/books',

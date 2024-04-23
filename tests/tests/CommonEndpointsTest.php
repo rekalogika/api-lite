@@ -28,6 +28,39 @@ class CommonEndpointsTest extends ApiLiteTestCase
         ]);
     }
 
+    public function testGetCollectionKeysetPagination(): void
+    {
+        $response = static::createAdminClient()->request('GET', '/admin/books-with-keyset-pagination');
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonContains([
+            '@context' => '/contexts/Admin/Book',
+            '@id' => '/admin/books-with-keyset-pagination',
+            '@type' => 'hydra:Collection',
+        ]);
+
+        $nextUrl = $response->toArray()['hydra:view']['hydra:next'] ?? null;
+        $lastUrl = $response->toArray()['hydra:view']['hydra:last'] ?? null;
+        static::assertIsString($nextUrl);
+        static::assertIsString($lastUrl);
+
+        $nextResponse = static::createAdminClient()->request('GET', $nextUrl);
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonContains([
+            '@context' => '/contexts/Admin/Book',
+            // '@id' => $nextUrl,
+            '@type' => 'hydra:Collection',
+        ]);
+
+        $lastResponse = static::createAdminClient()->request('GET', $lastUrl);
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonContains([
+            '@context' => '/contexts/Admin/Book',
+            // '@id' => $lastUrl,
+            '@type' => 'hydra:Collection',
+        ]);
+
+    }
+
     public function testGet(): void
     {
         $book = $this->getABook();
