@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.6.1
+
+* feat: Initial Rekapager support
+
 ## 0.6.0
 
 * refactor: Change return type from `PaginatorInterface` to `iterable` to
