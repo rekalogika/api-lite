@@ -43,7 +43,7 @@ final class ApiCollectionMapper implements ApiCollectionMapperInterface
         ?Context $mapperContext = null
     ): iterable {
         if ($collection instanceof TraversablePagerInterface) {
-            /** @var TraversablePagerInterface<array-key,object,object> */
+            /** @var TraversablePagerInterface<array-key,object> */
             $paginator = $collection;
         } elseif ($collection instanceof PaginatorInterface) {
             /** @var PaginatorInterface<object> $paginator */
@@ -56,7 +56,7 @@ final class ApiCollectionMapper implements ApiCollectionMapperInterface
             return $paginator;
         } elseif ($paginator instanceof TraversablePagerInterface) {
             /**
-             * @var TraversablePagerInterface<array-key,object,object>
+             * @var TraversablePagerInterface<array-key,object>
              * @psalm-suppress MixedArgumentTypeCoercion
              */
             return new MappingPagerDecorator(

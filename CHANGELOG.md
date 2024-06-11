@@ -8,6 +8,7 @@
   has been provided, no default value has been provided or there is a
   non-optional argument after this one."
 * build: add dump makefile target
+* deps: update rekapager to 0.10
 
 ## 0.6.1
 

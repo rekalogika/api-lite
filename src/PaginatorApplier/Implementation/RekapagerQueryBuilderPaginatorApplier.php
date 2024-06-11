@@ -40,7 +40,7 @@ class RekapagerQueryBuilderPaginatorApplier implements PaginatorApplierInterface
         /** @psalm-suppress InternalMethod */
         $extraProperties = $operation->getExtraProperties() ?? [];
 
-        /** @var bool */
+        /** @var bool|'keyset'|'offset' */
         $isEnabled = $extraProperties['api_lite_rekapager'] ?? false;
 
         if (!$isEnabled) {
