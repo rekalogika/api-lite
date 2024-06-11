@@ -21,14 +21,13 @@ use Rekalogika\Rekapager\Contracts\TraversablePagerInterface;
 /**
  * @template TKey of array-key
  * @template T of object
- * @template TIdentifier of object
- * @implements TraversablePagerInterface<TKey,T,TIdentifier>
+ * @implements TraversablePagerInterface<TKey,T>
  * @implements \IteratorAggregate<TKey,T>
  */
 final class MappingPagerDecorator implements \IteratorAggregate, TraversablePagerInterface
 {
     /**
-     * @param TraversablePagerInterface<TKey,object,TIdentifier> $pager
+     * @param TraversablePagerInterface<TKey,object> $pager
      * @param class-string<T> $targetClass
      */
     public function __construct(
@@ -46,7 +45,7 @@ final class MappingPagerDecorator implements \IteratorAggregate, TraversablePage
 
     public function withProximity(int $proximity): static
     {
-        /** @var TraversablePagerInterface<TKey,T,TIdentifier> */
+        /** @var TraversablePagerInterface<TKey,T> */
         $pager = $this->pager->withProximity($proximity);
 
         /** @psalm-suppress MixedArgumentTypeCoercion */

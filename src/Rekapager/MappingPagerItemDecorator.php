@@ -22,13 +22,13 @@ use Rekalogika\Rekapager\Contracts\PagerItemInterface;
  * @template TKey of array-key
  * @template T of object
  * @template TIdentifier of object
- * @implements PagerItemInterface<TKey,T,TIdentifier>
+ * @implements PagerItemInterface<TKey,T>
  * @implements \IteratorAggregate<TKey,T>
  */
 final class MappingPagerItemDecorator implements PagerItemInterface, \IteratorAggregate
 {
     /**
-     * @param PagerItemInterface<TKey,object,TIdentifier> $pagerItem
+     * @param PagerItemInterface<TKey,object> $pagerItem
      * @param ApiMapperInterface $mapper
      * @param class-string<T> $targetClass
      */
