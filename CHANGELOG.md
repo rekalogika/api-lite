@@ -7,6 +7,7 @@
   that could not be resolved. Either the argument is nullable and no null value
   has been provided, no default value has been provided or there is a
   non-optional argument after this one."
+* build: add dump makefile target
 
 ## 0.6.1
 

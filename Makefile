@@ -2,10 +2,10 @@ PHP=php
 COMPOSER=composer
 
 .PHONY: test
-all: dump phpstan psalm test
+all: composer-dump phpstan psalm test
 
-.PHONY: dump
-dump:
+.PHONY: composer-dump
+composer-dump:
 	$(COMPOSER) dump-autoload --optimize
 
 .PHONY: phpstan
@@ -49,3 +49,7 @@ serve:
 	tests/bin/console cache:clear
 	tests/bin/console asset:install tests/public/
 	symfony server:start --document-root=tests/public
+
+.PHONY: dump
+dump:
+	$(PHP) tests/bin/console server:dump
