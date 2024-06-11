@@ -34,7 +34,19 @@ use Symfony\Component\Uid\Uuid;
         ),
         new Delete(
             uriTemplate: '/reviews/{id}',
-            processor: ReviewRemoveProcessor::class
+            processor: ReviewRemoveProcessor::class,
+            // for some reason `read: false` here is no longer working, in the
+            // meantime, we can add `provider` to make it work. and it only
+            // applies to `Delete` operation.
+
+            // Error message when `read: false` is used: Uncaught PHP Exception
+            // RuntimeException: "Controller
+            // "ApiPlatform\Action\PlaceholderAction::__invoke" requires the
+            // "$data" argument that could not be resolved. Either the argument
+            // is nullable and no null value has been provided, no default value
+            // has been provided or there is a non-optional argument after this
+            // one.
+            provider: ReviewProvider::class
         ),
 
         // under book
