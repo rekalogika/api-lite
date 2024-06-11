@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.7.0
+
+* fix: temporary workaround for DELETE error: "Controller
+  "ApiPlatform\Action\PlaceholderAction::__invoke" requires the "$data" argument
+  that could not be resolved. Either the argument is nullable and no null value
+  has been provided, no default value has been provided or there is a
+  non-optional argument after this one."
+
 ## 0.6.1
 
 * feat: Initial Rekapager support
