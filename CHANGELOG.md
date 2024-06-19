@@ -1,5 +1,7 @@
 # CHANGELOG
 
+* deps: require rekapager 0.11
+
 ## 0.7.0
 
 * fix: temporary workaround for DELETE error: "Controller
