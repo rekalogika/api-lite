@@ -2,6 +2,7 @@
 
 * deps: require rekapager 0.11
 * feat: add `RekapagerPageablePaginatorApplier`
+* build: add github-actions to dependabot
 
 ## 0.7.0
 
