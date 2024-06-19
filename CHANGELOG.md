@@ -1,6 +1,7 @@
 # CHANGELOG
 
 * deps: require rekapager 0.11
+* feat: add `RekapagerPageablePaginatorApplier`
 
 ## 0.7.0
 
