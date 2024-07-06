@@ -4,6 +4,7 @@
 
 * build: exclude buggy `symfony/property-info`,
   https://github.com/symfony/symfony/issues/57634
+* fix: remove `api_lite_rekapager` check in `RekapagerPageablePaginatorApplier`
 
 ## 0.7.2
 
