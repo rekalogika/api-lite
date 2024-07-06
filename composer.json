@@ -55,6 +55,7 @@
         "symfony/framework-bundle": "^6.4 || ^7.0",
         "symfony/http-client": "^6.4 || ^7.0",
         "symfony/property-access": "^6.4.4 || ^7.0.4 || ^7.1",
+        "symfony/property-info": "6.4.0 - 6.4.8 || 7.0.0 - 7.0.8 || 7.1.0 - 7.1.1 || ^7.2",
         "symfony/maker-bundle": "^1.55",
         "symfony/routing": "^6.4 || ^7.0",
         "symfony/runtime": "^6.4 || ^7.0",

@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.7.3
+
+* build: exclude buggy `symfony/property-info`,
+  https://github.com/symfony/symfony/issues/57634
+
+## 0.7.2
+
 * deps: require rekapager 0.11
 * feat: add `RekapagerPageablePaginatorApplier`
 * build: add github-actions to dependabot
