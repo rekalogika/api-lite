@@ -35,16 +35,6 @@ class RekapagerPageablePaginatorApplier implements PaginatorApplierInterface
         Operation $operation,
         array $context,
     ): iterable {
-        /** @psalm-suppress InternalMethod */
-        $extraProperties = $operation->getExtraProperties() ?? [];
-
-        /** @var bool */
-        $isEnabled = $extraProperties['api_lite_rekapager'] ?? false;
-
-        if (!$isEnabled) {
-            throw new UnsupportedObjectException($this, $object);
-        }
-
         /** @psalm-suppress DocblockTypeContradiction */
         if (!$object instanceof PageableInterface) {
             /** @psalm-suppress NoValue */
