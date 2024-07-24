@@ -109,7 +109,7 @@ final class MappingPagerItemDecorator implements PagerItemInterface, \IteratorAg
         return $this->pagerItem->getPageNumber();
     }
 
-    public function withPageNumber(?int $pageNumber): PageInterface
+    public function withPageNumber(?int $pageNumber): static
     {
         throw new \BadMethodCallException('Not implemented');
     }
