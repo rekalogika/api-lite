@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.7.5
+
+* deps: bump rekapager
+
 ## 0.7.3
 
 * build: exclude buggy `symfony/property-info`,

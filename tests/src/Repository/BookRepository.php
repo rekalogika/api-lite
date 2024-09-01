@@ -12,9 +12,9 @@ use Doctrine\Persistence\ManagerRegistry;
  * @extends ServiceEntityRepository<Book>
  *
  * @method Book|null find($id, $lockMode = null, $lockVersion = null)
- * @method Book|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Book|null findOneBy(array<string,mixed> $criteria, ?array<string,string> $orderBy = null)
  * @method Book[]    findAll()
- * @method Book[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Book[]    findBy(array<string,mixed> $criteria, ?array<string,string> $orderBy = null, $limit = null, $offset = null)
  */
 class BookRepository extends ServiceEntityRepository
 {
