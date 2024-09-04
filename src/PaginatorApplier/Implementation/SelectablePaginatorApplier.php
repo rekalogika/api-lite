@@ -28,9 +28,7 @@ class SelectablePaginatorApplier implements PaginatorApplierInterface
 {
     use PaginationTrait;
 
-    public function __construct(private Pagination $pagination)
-    {
-    }
+    public function __construct(private Pagination $pagination) {}
 
     public function applyPaginator(
         object $object,

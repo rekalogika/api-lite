@@ -24,13 +24,13 @@ class EmbeddedRelationTest extends ApiLiteTestCase
 
         $response = static::createUserClient()->request(
             'POST',
-            sprintf('/user/books/%s/reviews', $book->getId()),
+            \sprintf('/user/books/%s/reviews', $book->getId()),
             [
                 'json' => [
                     'body' => 'New Review',
                     'rating' => 5,
-                ]
-            ]
+                ],
+            ],
         );
 
         $this->assertResponseIsSuccessful();
@@ -61,12 +61,12 @@ class EmbeddedRelationTest extends ApiLiteTestCase
                     'book' => [
                         'title' => $bookTitle,
                         'description' => $bookDescription,
-                    ]
+                    ],
                 ],
                 'headers' => [
-                    'Content-Type' => 'application/ld+json'
-                ]
-            ]
+                    'Content-Type' => 'application/ld+json',
+                ],
+            ],
         );
 
         $this->assertResponseIsSuccessful();
@@ -78,7 +78,7 @@ class EmbeddedRelationTest extends ApiLiteTestCase
         $this->assertIsString($bookIri);
         $this->assertMatchesRegularExpression(
             '|^/user/books/[a-z0-9-]+$|',
-            $bookIri
+            $bookIri,
         );
 
         $response = static::createUserClient()->request('GET', $bookIri);
@@ -102,12 +102,12 @@ class EmbeddedRelationTest extends ApiLiteTestCase
                 'json' => [
                     'body' => $reviewBody,
                     'rating' => 5,
-                    'book' => sprintf('/user/books/%s', $book->getId()),
+                    'book' => \sprintf('/user/books/%s', $book->getId()),
                 ],
                 'headers' => [
-                    'Content-Type' => 'application/ld+json'
-                ]
-            ]
+                    'Content-Type' => 'application/ld+json',
+                ],
+            ],
         );
 
         $this->assertResponseIsSuccessful();
@@ -187,9 +187,9 @@ class EmbeddedRelationTest extends ApiLiteTestCase
                     'rating' => 5,
                 ],
                 'headers' => [
-                    'Content-Type' => 'application/ld+json'
-                ]
-            ]
+                    'Content-Type' => 'application/ld+json',
+                ],
+            ],
         );
 
         $this->getEntityManager()->clear();
@@ -203,7 +203,7 @@ class EmbeddedRelationTest extends ApiLiteTestCase
         $this->assertIsString($bookIri);
         $this->assertMatchesRegularExpression(
             '|^/user/books/[a-z0-9-]+$|',
-            $bookIri
+            $bookIri,
         );
 
         $response = static::createUserClient()->request('GET', $bookIri);

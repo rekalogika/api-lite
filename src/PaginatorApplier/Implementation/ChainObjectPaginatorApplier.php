@@ -27,8 +27,7 @@ class ChainObjectPaginatorApplier implements PaginatorApplierInterface
      */
     public function __construct(
         private iterable $objectPaginators,
-    ) {
-    }
+    ) {}
 
     public function applyPaginator(
         object $object,

@@ -35,8 +35,7 @@ final class MappingPagerDecorator implements \IteratorAggregate, TraversablePage
         private ApiMapperInterface $mapper,
         private string $targetClass,
         private ?Context $context = null,
-    ) {
-    }
+    ) {}
 
     public function getProximity(): int
     {
@@ -53,7 +52,7 @@ final class MappingPagerDecorator implements \IteratorAggregate, TraversablePage
             $pager,
             $this->mapper,
             $this->targetClass,
-            $this->context
+            $this->context,
         );
     }
 
@@ -62,7 +61,7 @@ final class MappingPagerDecorator implements \IteratorAggregate, TraversablePage
         return new MappingPagerItemDecorator(
             $this->pager->getCurrentPage(),
             $this->mapper,
-            $this->targetClass
+            $this->targetClass,
         );
     }
 
@@ -77,7 +76,7 @@ final class MappingPagerDecorator implements \IteratorAggregate, TraversablePage
         return new MappingPagerItemDecorator(
             $page,
             $this->mapper,
-            $this->targetClass
+            $this->targetClass,
         );
     }
 
@@ -92,7 +91,7 @@ final class MappingPagerDecorator implements \IteratorAggregate, TraversablePage
         return new MappingPagerItemDecorator(
             $page,
             $this->mapper,
-            $this->targetClass
+            $this->targetClass,
         );
     }
 
@@ -107,7 +106,7 @@ final class MappingPagerDecorator implements \IteratorAggregate, TraversablePage
         return new MappingPagerItemDecorator(
             $page,
             $this->mapper,
-            $this->targetClass
+            $this->targetClass,
         );
     }
 
@@ -122,7 +121,7 @@ final class MappingPagerDecorator implements \IteratorAggregate, TraversablePage
         return new MappingPagerItemDecorator(
             $page,
             $this->mapper,
-            $this->targetClass
+            $this->targetClass,
         );
     }
 
@@ -142,7 +141,7 @@ final class MappingPagerDecorator implements \IteratorAggregate, TraversablePage
             yield new MappingPagerItemDecorator(
                 $page,
                 $this->mapper,
-                $this->targetClass
+                $this->targetClass,
             );
         }
     }
@@ -153,7 +152,7 @@ final class MappingPagerDecorator implements \IteratorAggregate, TraversablePage
             yield new MappingPagerItemDecorator(
                 $page,
                 $this->mapper,
-                $this->targetClass
+                $this->targetClass,
             );
         }
     }

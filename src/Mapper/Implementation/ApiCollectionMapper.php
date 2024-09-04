@@ -32,15 +32,14 @@ final class ApiCollectionMapper implements ApiCollectionMapperInterface
     public function __construct(
         private ApiMapperInterface $mapper,
         private PaginatorApplierInterface $paginatorApplier,
-    ) {
-    }
+    ) {}
 
     public function mapCollection(
         object $collection,
         ?string $target,
         Operation $operation,
         array $context = [],
-        ?Context $mapperContext = null
+        ?Context $mapperContext = null,
     ): iterable {
         if ($collection instanceof TraversablePagerInterface) {
             /** @var TraversablePagerInterface<array-key,object> */
@@ -88,7 +87,7 @@ final class ApiCollectionMapper implements ApiCollectionMapperInterface
     private function paginate(
         object $collection,
         Operation $operation,
-        array $context
+        array $context,
     ): iterable {
         return $this->paginatorApplier
             ->applyPaginator($collection, $operation, $context);

@@ -15,7 +15,6 @@ namespace Rekalogika\ApiLite\Rekapager;
 
 use Rekalogika\ApiLite\Mapper\ApiMapperInterface;
 use Rekalogika\Contracts\Rekapager\PageableInterface;
-use Rekalogika\Contracts\Rekapager\PageInterface;
 use Rekalogika\Rekapager\Contracts\PagerItemInterface;
 
 /**
@@ -36,8 +35,7 @@ final class MappingPagerItemDecorator implements PagerItemInterface, \IteratorAg
         private PagerItemInterface $pagerItem,
         private ApiMapperInterface $mapper,
         private string $targetClass,
-    ) {
-    }
+    ) {}
 
     public function getUrl(): ?string
     {
@@ -84,8 +82,8 @@ final class MappingPagerItemDecorator implements PagerItemInterface, \IteratorAg
         $nextPages = $this->pagerItem->getNextPages($numberOfPages);
 
         return array_map(
-            fn (PagerItemInterface $pagerItem) => new self($pagerItem, $this->mapper, $this->targetClass),
-            $nextPages
+            fn(PagerItemInterface $pagerItem) => new self($pagerItem, $this->mapper, $this->targetClass),
+            $nextPages,
         );
     }
 
@@ -94,8 +92,8 @@ final class MappingPagerItemDecorator implements PagerItemInterface, \IteratorAg
         $previousPages = $this->pagerItem->getPreviousPages($numberOfPages);
 
         return array_map(
-            fn (PagerItemInterface $pagerItem) => new self($pagerItem, $this->mapper, $this->targetClass),
-            $previousPages
+            fn(PagerItemInterface $pagerItem) => new self($pagerItem, $this->mapper, $this->targetClass),
+            $previousPages,
         );
     }
 

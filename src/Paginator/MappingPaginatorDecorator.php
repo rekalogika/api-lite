@@ -33,8 +33,7 @@ final class MappingPaginatorDecorator implements \IteratorAggregate, PaginatorIn
         private ApiMapperInterface $mapper,
         private string $targetClass,
         private ?Context $context = null,
-    ) {
-    }
+    ) {}
 
     /**
      * @return \Traversable<T>

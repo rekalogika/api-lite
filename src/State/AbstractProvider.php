@@ -19,6 +19,4 @@ use ApiPlatform\State\ProviderInterface;
  * @template T of object
  * @implements ProviderInterface<T>
  */
-abstract class AbstractProvider extends AbstractState implements ProviderInterface
-{
-}
+abstract class AbstractProvider extends AbstractState implements ProviderInterface {}

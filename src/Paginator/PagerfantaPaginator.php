@@ -28,8 +28,7 @@ final class PagerfantaPaginator implements \IteratorAggregate, PaginatorInterfac
      */
     public function __construct(
         private readonly PagerfantaInterface $pagerfanta,
-    ) {
-    }
+    ) {}
 
     /**
      * {@inheritdoc}

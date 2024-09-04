@@ -29,8 +29,7 @@ class RekapagerSelectablePaginatorApplier implements PaginatorApplierInterface
 {
     public function __construct(
         private PagerFactoryInterface $pagerFactory,
-    ) {
-    }
+    ) {}
 
     public function applyPaginator(
         object $object,

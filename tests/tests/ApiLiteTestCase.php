@@ -27,9 +27,9 @@ class ApiLiteTestCase extends ApiTestCase
         return static::createClient([], [
             'headers' => [
                 'authorization' => 'Bearer admin',
-                'content-type' => 'application/ld+json'
+                'content-type' => 'application/ld+json',
             ],
-    ]);
+        ]);
     }
 
     protected function createUserClient(): Client
@@ -37,7 +37,7 @@ class ApiLiteTestCase extends ApiTestCase
         return static::createClient([], [
             'headers' => [
                 'authorization' => 'Bearer user',
-                'content-type' => 'application/ld+json'
+                'content-type' => 'application/ld+json',
             ],
         ]);
     }
