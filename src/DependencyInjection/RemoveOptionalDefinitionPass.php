@@ -30,11 +30,11 @@ final readonly class RemoveOptionalDefinitionPass implements CompilerPassInterfa
 {
     public function process(ContainerBuilder $container): void
     {
-        if (!\interface_exists(PagerfantaInterface::class)) {
+        if (!interface_exists(PagerfantaInterface::class)) {
             $container->removeDefinition(PagerfantaPaginatorApplier::class);
         }
 
-        if (!\interface_exists(Collection::class)) {
+        if (!interface_exists(Collection::class)) {
             $container->removeDefinition(CollectionPaginatorApplier::class);
             $container->removeDefinition(SelectablePaginatorApplier::class);
         }

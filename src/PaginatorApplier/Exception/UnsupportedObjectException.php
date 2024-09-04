@@ -28,10 +28,10 @@ class UnsupportedObjectException extends UnexpectedValueException
         ?object $object = null,
     ) {
         if ($paginatorApplier !== null && $object !== null) {
-            parent::__construct(sprintf(
+            parent::__construct(\sprintf(
                 'Cannot apply paginator to object of type "%s" using "%s"',
-                get_class($object),
-                get_class($paginatorApplier)
+                \get_class($object),
+                \get_class($paginatorApplier),
             ));
         }
     }

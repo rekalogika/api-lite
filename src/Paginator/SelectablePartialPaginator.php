@@ -36,7 +36,7 @@ final readonly class SelectablePartialPaginator implements \IteratorAggregate, P
     public function __construct(
         readonly Selectable $selectable,
         private readonly float $currentPage,
-        private readonly float $itemsPerPage
+        private readonly float $itemsPerPage,
     ) {
         $criteria = Criteria::create()
             ->setFirstResult((int) (($currentPage - 1) * $itemsPerPage))

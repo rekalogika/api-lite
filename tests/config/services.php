@@ -24,7 +24,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services
         ->instanceof(
-            PaginatorApplierInterface::class
+            PaginatorApplierInterface::class,
         )
         ->tag('rekalogika.api_lite.paginator_applier');
 

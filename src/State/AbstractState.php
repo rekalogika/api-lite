@@ -56,7 +56,7 @@ abstract class AbstractState implements ServiceSubscriberInterface
     private function get(string $service): object
     {
         $result = $this->container?->get($service);
-        assert($result instanceof $service);
+        \assert($result instanceof $service);
 
         return $result;
     }
@@ -74,7 +74,7 @@ abstract class AbstractState implements ServiceSubscriberInterface
     protected function map(
         object $source,
         string|object $target,
-        ?Context $context = null
+        ?Context $context = null,
     ): object {
         return $this->get(ApiMapperInterface::class)
             ->map($source, $target, $context);
@@ -100,7 +100,7 @@ abstract class AbstractState implements ServiceSubscriberInterface
                 $target,
                 $operation,
                 $context,
-                $mapperContext
+                $mapperContext,
             );
     }
 

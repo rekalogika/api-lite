@@ -67,12 +67,12 @@ class CommonEndpointsTest extends ApiLiteTestCase
 
         $response = static::createAdminClient()->request(
             'GET',
-            sprintf('/admin/books/%s', $book->getId())
+            \sprintf('/admin/books/%s', $book->getId()),
         );
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            '@id' => sprintf('/admin/books/%s', $book->getId()),
+            '@id' => \sprintf('/admin/books/%s', $book->getId()),
             '@type' => 'Admin/Book',
             'id' => (string) $book->getId(),
             'title' => $book->getTitle(),
@@ -89,8 +89,8 @@ class CommonEndpointsTest extends ApiLiteTestCase
                 'json' => [
                     'title' => 'New Book',
                     'description' => 'New Description',
-                ]
-            ]
+                ],
+            ],
         );
 
         $this->assertResponseIsSuccessful();
@@ -106,13 +106,13 @@ class CommonEndpointsTest extends ApiLiteTestCase
 
         $response = static::createAdminClient()->request(
             'PUT',
-            sprintf('/admin/books/%s', $book->getId()),
+            \sprintf('/admin/books/%s', $book->getId()),
             [
                 'json' => [
                     'title' => 'Updated Book',
                     'description' => 'Updated Description',
-                ]
-            ]
+                ],
+            ],
         );
 
         $this->assertResponseIsSuccessful();
@@ -134,7 +134,7 @@ class CommonEndpointsTest extends ApiLiteTestCase
 
         $response = static::createAdminClient()->request(
             'PATCH',
-            sprintf('/admin/books/%s', $book->getId()),
+            \sprintf('/admin/books/%s', $book->getId()),
             [
                 'json' => [
                     'title' => 'Patched Book',
@@ -142,7 +142,7 @@ class CommonEndpointsTest extends ApiLiteTestCase
                 'headers' => [
                     'Content-Type' => 'application/merge-patch+json',
                 ],
-            ]
+            ],
         );
 
         $this->assertResponseIsSuccessful();
@@ -162,7 +162,7 @@ class CommonEndpointsTest extends ApiLiteTestCase
 
         $response = static::createAdminClient()->request(
             'DELETE',
-            sprintf('/admin/books/%s', $book->getId())
+            \sprintf('/admin/books/%s', $book->getId()),
         );
 
         $this->assertResponseIsSuccessful();
@@ -179,12 +179,12 @@ class CommonEndpointsTest extends ApiLiteTestCase
 
         $response = static::createAdminClient()->request(
             'POST',
-            sprintf('/admin/books/%s/check', $book->getId()),
+            \sprintf('/admin/books/%s/check', $book->getId()),
             [
                 'headers' => [
                     'Content-Type' => false,
                 ],
-            ]
+            ],
         );
 
         $book = $this->getBookRepository()->find($book->getId());

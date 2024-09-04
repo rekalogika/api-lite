@@ -21,13 +21,13 @@ class SubresourceTest extends ApiLiteTestCase
 
         $response = static::createUserClient()->request(
             'GET',
-            sprintf('/user/books/%s/reviews', $book->getId())
+            \sprintf('/user/books/%s/reviews', $book->getId()),
         );
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
             '@context' => '/contexts/User/Review',
-            '@id' => sprintf('/user/books/%s/reviews', $book->getId()),
+            '@id' => \sprintf('/user/books/%s/reviews', $book->getId()),
             '@type' => 'hydra:Collection',
         ]);
     }
@@ -41,12 +41,12 @@ class SubresourceTest extends ApiLiteTestCase
 
         $response = static::createUserClient()->request(
             'GET',
-            sprintf('/user/books/%s/reviews/%s', $book->getId(), $review->getId())
+            \sprintf('/user/books/%s/reviews/%s', $book->getId(), $review->getId()),
         );
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
-            '@id' => sprintf('/user/books/%s/reviews/%s', $book->getId(), $review->getId()),
+            '@id' => \sprintf('/user/books/%s/reviews/%s', $book->getId(), $review->getId()),
             '@type' => 'User/Review',
             'id' => (string) $review->getId(),
             'body' => $review->getBody(),
@@ -59,13 +59,13 @@ class SubresourceTest extends ApiLiteTestCase
 
         $response = static::createUserClient()->request(
             'GET',
-            sprintf('/user/books/%s', $book->getId())
+            \sprintf('/user/books/%s', $book->getId()),
         );
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
             '@context' => '/contexts/User/Book',
-            '@id' => sprintf('/user/books/%s', $book->getId()),
+            '@id' => \sprintf('/user/books/%s', $book->getId()),
             '@type' => 'User/Book',
         ]);
 
@@ -73,7 +73,7 @@ class SubresourceTest extends ApiLiteTestCase
         $this->assertIsString($reviewIri);
         $this->assertMatchesRegularExpression(
             '|^/user/books/[a-z0-9-]+/reviews$|',
-            $reviewIri
+            $reviewIri,
         );
     }
 
@@ -83,13 +83,13 @@ class SubresourceTest extends ApiLiteTestCase
 
         $response = static::createUserClient()->request(
             'GET',
-            sprintf('/user/books/withCollectionOfIris/%s', $book->getId())
+            \sprintf('/user/books/withCollectionOfIris/%s', $book->getId()),
         );
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
             '@context' => '/contexts/User/Book',
-            '@id' => sprintf('/user/books/withCollectionOfIris/%s', $book->getId()),
+            '@id' => \sprintf('/user/books/withCollectionOfIris/%s', $book->getId()),
             '@type' => 'User/Book',
         ]);
 
@@ -100,7 +100,7 @@ class SubresourceTest extends ApiLiteTestCase
             $this->assertIsString($reviewIri);
             $this->assertMatchesRegularExpression(
                 '|^/user/reviews/[a-z0-9-]+$|',
-                $reviewIri
+                $reviewIri,
             );
         }
     }
@@ -111,13 +111,13 @@ class SubresourceTest extends ApiLiteTestCase
 
         $response = static::createUserClient()->request(
             'GET',
-            sprintf('/user/books/withEmbeddedObjects/%s', $book->getId())
+            \sprintf('/user/books/withEmbeddedObjects/%s', $book->getId()),
         );
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains([
             '@context' => '/contexts/User/Book',
-            '@id' => sprintf('/user/books/withEmbeddedObjects/%s', $book->getId()),
+            '@id' => \sprintf('/user/books/withEmbeddedObjects/%s', $book->getId()),
             '@type' => 'User/Book',
         ]);
 

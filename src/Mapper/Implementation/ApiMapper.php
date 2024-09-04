@@ -41,7 +41,7 @@ final class ApiMapper implements ApiMapperInterface, ResetInterface
     public function map(
         object $source,
         object|string $target,
-        ?Context $context = null
+        ?Context $context = null,
     ): object {
         $objectCache = $this->objectCacheFactory->createObjectCache();
 

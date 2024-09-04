@@ -37,7 +37,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services
         ->set('rekalogika.api_lite.paginator_applier.chain', ChainObjectPaginatorApplier::class)
         ->args([
-            tagged_iterator('rekalogika.api_lite.paginator_applier')
+            tagged_iterator('rekalogika.api_lite.paginator_applier'),
         ]);
 
     $services
@@ -100,7 +100,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->set(ApiMapperInterface::class, ApiMapper::class)
         ->args([
             '$mapper' => service(MapperInterface::class),
-            '$objectCacheFactory' => service('rekalogika.mapper.object_cache_factory')
+            '$objectCacheFactory' => service('rekalogika.mapper.object_cache_factory'),
         ])
         ->tag('kernel.reset', ['method' => 'reset']);
 

@@ -20,6 +20,4 @@ use ApiPlatform\State\ProcessorInterface;
  * @template TOutput
  * @implements ProcessorInterface<TInput,TOutput>
  */
-abstract class AbstractProcessor extends AbstractState implements ProcessorInterface
-{
-}
+abstract class AbstractProcessor extends AbstractState implements ProcessorInterface {}

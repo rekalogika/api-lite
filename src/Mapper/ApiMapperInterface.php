@@ -16,6 +16,4 @@ namespace Rekalogika\ApiLite\Mapper;
 use Rekalogika\Mapper\MapperInterface;
 use Symfony\Contracts\Service\ResetInterface;
 
-interface ApiMapperInterface extends MapperInterface, ResetInterface
-{
-}
+interface ApiMapperInterface extends MapperInterface, ResetInterface {}
