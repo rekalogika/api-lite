@@ -54,6 +54,7 @@ jobs:
 
     - name: Run psalm
       run: make psalm
+      if: matrix.dep == 'highest'
 
     - name: Run phpstan
       run: make phpstan
