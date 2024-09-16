@@ -135,8 +135,11 @@ abstract class AbstractState implements ServiceSubscriberInterface
      *
      * @throws AccessDeniedException
      */
-    protected function denyAccessUnlessGranted(mixed $attribute, mixed $subject = null, string $message = 'Access Denied.'): void
-    {
+    protected function denyAccessUnlessGranted(
+        mixed $attribute,
+        mixed $subject = null,
+        string $message = 'Access Denied.'
+    ): void {
         if (!$this->isGranted($attribute, $subject)) {
             $exception = $this->createAccessDeniedException($message);
             $exception->setAttributes([$attribute]);
@@ -153,8 +156,10 @@ abstract class AbstractState implements ServiceSubscriberInterface
      *
      *     throw $this->createNotFoundException('Page not found!');
      */
-    protected function createNotFoundException(string $message = 'Not Found', \Throwable $previous = null): NotFoundException
-    {
+    protected function createNotFoundException(
+        string $message = 'Not Found',
+        ?\Throwable $previous = null
+    ): NotFoundException {
         return new NotFoundException($message, $previous);
     }
 
@@ -167,8 +172,10 @@ abstract class AbstractState implements ServiceSubscriberInterface
      *
      * @throws \LogicException If the Security component is not available
      */
-    protected function createAccessDeniedException(string $message = 'Access Denied.', \Throwable $previous = null): AccessDeniedException
-    {
+    protected function createAccessDeniedException(
+        string $message = 'Access Denied.',
+        ?\Throwable $previous = null
+    ): AccessDeniedException {
         if (!class_exists(AccessDeniedException::class)) {
             throw new \LogicException('You cannot use the "createAccessDeniedException" method if the Security component is not available. Try running "composer require symfony/security-bundle".');
         }
