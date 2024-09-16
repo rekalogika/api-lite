@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.7.6
+
+* test: add test for PHP 8.4
+
 ## 0.7.5
 
 * deps: bump rekapager
