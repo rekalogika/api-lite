@@ -22,8 +22,6 @@ api_platform:
             rfc_7807_compliant_errors: true
         normalization_context:
             skip_null_values: false
-    event_listeners_backward_compatibility_layer: false
-    keep_legacy_inflector: false
     mapping:
         paths:
             - '%kernel.project_dir%/tests/src/ApiResource'
