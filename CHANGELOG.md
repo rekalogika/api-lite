@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.8.0
+
+* deps: support api-platform 4
+
 ## 0.7.7
 
 * deps: bump rekapager
