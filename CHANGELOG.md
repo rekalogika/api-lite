@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.8.1
+
+* chore: static analysis
+
 ## 0.8.0
 
 * deps: support api-platform 4
