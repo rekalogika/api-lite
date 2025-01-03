@@ -19,6 +19,7 @@ class User implements UserInterface
     }
 
     /**
+     * @param non-empty-string $username
      * @param list<string> $roles
      */
     private function __construct(
