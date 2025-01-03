@@ -3,6 +3,7 @@
 ## 0.8.1
 
 * chore: static analysis
+* deps: bump rekapager
 
 ## 0.8.0
 
