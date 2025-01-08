@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.8.2
+
+* deps: bump rekapager
+
 ## 0.8.1
 
 * chore: static analysis
