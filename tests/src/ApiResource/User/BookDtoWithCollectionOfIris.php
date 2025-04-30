@@ -21,7 +21,7 @@ use Symfony\Component\Uid\Uuid;
         ),
     ]
 )]
-class BookDtoWithCollectionOfIris
+final class BookDtoWithCollectionOfIris
 {
     public ?Uuid $id = null;
     public ?string $title = null;

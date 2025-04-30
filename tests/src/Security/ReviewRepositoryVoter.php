@@ -11,13 +11,15 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 /**
  * @extends Voter<string,ReviewRepository>
  */
-class ReviewRepositoryVoter extends Voter
+final class ReviewRepositoryVoter extends Voter
 {
+    #[\Override]
     protected function supports(string $attribute, mixed $subject): bool
     {
         return $subject instanceof ReviewRepository;
     }
 
+    #[\Override]
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
         return true;

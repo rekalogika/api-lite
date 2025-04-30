@@ -39,26 +39,27 @@ final class SelectablePaginator implements \IteratorAggregate, PaginatorInterfac
         private readonly float $currentPage,
         private readonly float $itemsPerPage,
     ) {
-        $this->totalItems = $this->selectable instanceof \Countable ? $this->selectable->count() : $this->selectable->matching(Criteria::create())->count();
+        $this->totalItems = $this->selectable instanceof \Countable
+            ? $this->selectable->count()
+            : $this->selectable->matching(Criteria::create())->count();
+
+        $itemsPerPage = (int) $itemsPerPage;
+        $currentPage = (int) $currentPage;
 
         $criteria = Criteria::create()
-            ->setFirstResult((int) (($currentPage - 1) * $itemsPerPage))
-            ->setMaxResults($itemsPerPage > 0 ? (int) $itemsPerPage : null);
+            ->setFirstResult(($currentPage - 1) * $itemsPerPage)
+            ->setMaxResults($itemsPerPage > 0 ? $itemsPerPage : null);
 
         $this->slicedCollection = $selectable->matching($criteria);
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getCurrentPage(): float
     {
         return $this->currentPage;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getLastPage(): float
     {
         if (0. >= $this->itemsPerPage) {
@@ -68,25 +69,19 @@ final class SelectablePaginator implements \IteratorAggregate, PaginatorInterfac
         return max(ceil($this->totalItems / $this->itemsPerPage) ?: 1., 1.);
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getItemsPerPage(): float
     {
         return $this->itemsPerPage;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getTotalItems(): float
     {
         return $this->totalItems;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function count(): int
     {
         return $this->slicedCollection->count();
@@ -96,6 +91,7 @@ final class SelectablePaginator implements \IteratorAggregate, PaginatorInterfac
      * {@inheritdoc}
      * @return \Traversable<T>
      */
+    #[\Override]
     public function getIterator(): \Traversable
     {
         return $this->slicedCollection->getIterator();

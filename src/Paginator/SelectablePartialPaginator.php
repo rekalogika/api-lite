@@ -38,9 +38,12 @@ final readonly class SelectablePartialPaginator implements \IteratorAggregate, P
         private readonly float $currentPage,
         private readonly float $itemsPerPage,
     ) {
+        $itemsPerPage = (int) $itemsPerPage;
+        $currentPage = (int) $currentPage;
+
         $criteria = Criteria::create()
-            ->setFirstResult((int) (($currentPage - 1) * $itemsPerPage))
-            ->setMaxResults((int) $itemsPerPage);
+            ->setFirstResult(($currentPage - 1) * $itemsPerPage)
+            ->setMaxResults($itemsPerPage);
 
         $this->slicedCollection = $selectable->matching($criteria);
     }
@@ -48,6 +51,7 @@ final readonly class SelectablePartialPaginator implements \IteratorAggregate, P
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function getCurrentPage(): float
     {
         return $this->currentPage;
@@ -56,6 +60,7 @@ final readonly class SelectablePartialPaginator implements \IteratorAggregate, P
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function getItemsPerPage(): float
     {
         return $this->itemsPerPage;
@@ -64,6 +69,7 @@ final readonly class SelectablePartialPaginator implements \IteratorAggregate, P
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function count(): int
     {
         return $this->slicedCollection->count();
@@ -73,6 +79,7 @@ final readonly class SelectablePartialPaginator implements \IteratorAggregate, P
      * {@inheritdoc}
      * @return \Traversable<T>
      */
+    #[\Override]
     public function getIterator(): \Traversable
     {
         return $this->slicedCollection->getIterator();

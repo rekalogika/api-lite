@@ -2,7 +2,11 @@ parameters:
     level: max
     paths:
         - src
-        - tests
+        - tests/bin
+        - tests/src
+        - tests/config
+        - tests/public
+        - tests/tests
     checkBenevolentUnionTypes: true
     checkExplicitMixedMissingReturn: true
     checkFunctionNameCase: true
@@ -11,6 +15,10 @@ parameters:
     treatPhpDocTypesAsCertain: false
     excludePaths:
         - tests/src/Factory
+    ignoreErrors:
+        -
+            identifier: return.unusedType
+            path: tests/src/ApiState/*
 includes:
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - vendor/phpstan/phpstan-phpunit/rules.neon

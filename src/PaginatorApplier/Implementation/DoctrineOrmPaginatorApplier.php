@@ -27,12 +27,13 @@ use Rekalogika\ApiLite\PaginatorApplier\PaginatorApplierInterface;
  * @template TOutputMember of object
  * @implements PaginatorApplierInterface<TOutputMember>
  */
-class DoctrineOrmPaginatorApplier implements PaginatorApplierInterface
+final class DoctrineOrmPaginatorApplier implements PaginatorApplierInterface
 {
     use PaginationTrait;
 
     public function __construct(private Pagination $pagination) {}
 
+    #[\Override]
     public function applyPaginator(
         object $object,
         Operation $operation,

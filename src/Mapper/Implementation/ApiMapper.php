@@ -32,12 +32,14 @@ final class ApiMapper implements ApiMapperInterface, ResetInterface
         $this->presetMapping = new PresetMapping();
     }
 
+    #[\Override]
     public function reset(): void
     {
         $this->presetMapping = new PresetMapping();
     }
 
     /** @psalm-suppress InvalidReturnType */
+    #[\Override]
     public function map(
         object $source,
         object|string $target,

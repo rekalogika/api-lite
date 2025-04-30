@@ -10,7 +10,11 @@
 
     <projectFiles>
         <directory name="src" />
-        <directory name="tests" />
+        <directory name="tests/bin" />
+        <directory name="tests/src" />
+        <directory name="tests/public" />
+        <directory name="tests/config" />
+        <directory name="tests/tests" />
         <ignoreFiles>
             <directory name="vendor" />
         </ignoreFiles>
@@ -42,5 +46,10 @@
                 <directory name="tests/src/ApiState/" />
             </errorLevel>
         </InvalidReturnStatement>
+        <ClassMustBeFinal>
+            <errorLevel type="suppress">
+                <directory name="tests/src/Entity/" />
+            </errorLevel>
+        </ClassMustBeFinal>
     </issueHandlers>
 </psalm>

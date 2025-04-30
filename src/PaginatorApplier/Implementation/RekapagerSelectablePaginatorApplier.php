@@ -25,18 +25,22 @@ use Rekalogika\Rekapager\Keyset\KeysetPageable;
  * @template TOutputMember of object
  * @implements PaginatorApplierInterface<TOutputMember>
  */
-class RekapagerSelectablePaginatorApplier implements PaginatorApplierInterface
+final class RekapagerSelectablePaginatorApplier implements PaginatorApplierInterface
 {
     public function __construct(
         private PagerFactoryInterface $pagerFactory,
     ) {}
 
+    #[\Override]
     public function applyPaginator(
         object $object,
         Operation $operation,
         array $context,
     ): iterable {
-        /** @psalm-suppress InternalMethod */
+        /**
+         * @psalm-suppress InternalMethod
+         * @phpstan-ignore method.internalClass
+         */
         $extraProperties = $operation->getExtraProperties() ?? [];
 
         /** @var bool */

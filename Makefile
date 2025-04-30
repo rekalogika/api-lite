@@ -19,9 +19,12 @@ psalm:
 .PHONY: test
 test: testprepare phpunit
 
+.PHONY: clean
+clean:
+	rm -rf tests/var
+
 .PHONY: testprepare
-testprepare:
-	rm -rf var
+testprepare: clean
 	tests/bin/console doctrine:schema:create
 	tests/bin/console doctrine:fixtures:load --no-interaction
 
@@ -32,8 +35,13 @@ phpunit:
 
 .PHONY: php-cs-fixer
 php-cs-fixer: tools/php-cs-fixer
-	$(PHP) $< fix --config=.php-cs-fixer.dist.php --verbose --allow-risky=yes
-	$(PHP) $< fix --config=.php-cs-fixer.code-sample.php --verbose --allow-risky=yes
+	PHP_CS_FIXER_IGNORE_ENV=1 $(PHP)  $< fix --config=.php-cs-fixer.dist.php --verbose --allow-risky=yes
+	PHP_CS_FIXER_IGNORE_ENV=1 $(PHP) $< fix --config=.php-cs-fixer.code-sample.php --verbose --allow-risky=yes
+
+.PHONY: rector
+rector:
+	$(PHP) vendor/bin/rector process > rector.log
+	make php-cs-fixer
 
 tools/php-cs-fixer:
 	phive install php-cs-fixer

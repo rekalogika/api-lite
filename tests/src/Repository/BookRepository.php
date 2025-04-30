@@ -16,10 +16,11 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Book[]    findAll()
  * @method Book[]    findBy(array<string,mixed> $criteria, ?array<string,string> $orderBy = null, $limit = null, $offset = null)
  */
-class BookRepository extends ServiceEntityRepository
+final class BookRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
+        // @phpstan-ignore method.internalClass
         parent::__construct($registry, Book::class);
     }
 }

@@ -8,7 +8,7 @@ use ApiPlatform\Metadata\ApiProperty;
 use App\ApiResource\User\BookDto;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class ReviewInputDtoWithBook
+final class ReviewInputDtoWithBook
 {
     #[ApiProperty(writableLink: false)]
     public BookDto $book;

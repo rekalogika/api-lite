@@ -16,10 +16,11 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Review[]    findAll()
  * @method Review[]    findBy(array<string,mixed> $criteria, ?array<string,string> $orderBy = null, $limit = null, $offset = null)
  */
-class ReviewRepository extends ServiceEntityRepository
+final class ReviewRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
+        // @phpstan-ignore method.internalClass
         parent::__construct($registry, Review::class);
     }
 }

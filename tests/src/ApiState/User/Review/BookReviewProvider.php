@@ -14,13 +14,14 @@ use Symfony\Component\Uid\Uuid;
 /**
  * @extends AbstractProvider<ReviewDto>
  */
-class BookReviewProvider extends AbstractProvider
+final class BookReviewProvider extends AbstractProvider
 {
     public function __construct(
         private BookRepository $bookRepository
     ) {
     }
 
+    #[\Override]
     public function provide(
         Operation $operation,
         array $uriVariables = [],

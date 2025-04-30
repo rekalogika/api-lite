@@ -37,16 +37,19 @@ final class MappingPagerItemDecorator implements PagerItemInterface, \IteratorAg
         private string $targetClass,
     ) {}
 
+    #[\Override]
     public function getUrl(): ?string
     {
         return $this->pagerItem->getUrl();
     }
 
+    #[\Override]
     public function isDisabled(): bool
     {
         return $this->pagerItem->isDisabled();
     }
 
+    #[\Override]
     public function getNextPage(): ?PagerItemInterface
     {
         $nextPage = $this->pagerItem->getNextPage();
@@ -62,6 +65,7 @@ final class MappingPagerItemDecorator implements PagerItemInterface, \IteratorAg
         );
     }
 
+    #[\Override]
     public function getPreviousPage(): ?PagerItemInterface
     {
         $previousPage = $this->pagerItem->getPreviousPage();
@@ -77,6 +81,7 @@ final class MappingPagerItemDecorator implements PagerItemInterface, \IteratorAg
         );
     }
 
+    #[\Override]
     public function getNextPages(int $numberOfPages): array
     {
         $nextPages = $this->pagerItem->getNextPages($numberOfPages);
@@ -87,6 +92,7 @@ final class MappingPagerItemDecorator implements PagerItemInterface, \IteratorAg
         );
     }
 
+    #[\Override]
     public function getPreviousPages(int $numberOfPages): array
     {
         $previousPages = $this->pagerItem->getPreviousPages($numberOfPages);
@@ -97,36 +103,43 @@ final class MappingPagerItemDecorator implements PagerItemInterface, \IteratorAg
         );
     }
 
+    #[\Override]
     public function getPageIdentifier(): object
     {
         return $this->pagerItem->getPageIdentifier();
     }
 
+    #[\Override]
     public function getPageNumber(): ?int
     {
         return $this->pagerItem->getPageNumber();
     }
 
+    #[\Override]
     public function withPageNumber(?int $pageNumber): static
     {
         throw new \BadMethodCallException('Not implemented');
     }
 
+    #[\Override]
     public function getPageable(): PageableInterface
     {
         throw new \BadMethodCallException('Not implemented');
     }
 
+    #[\Override]
     public function getItemsPerPage(): int
     {
         return $this->pagerItem->getItemsPerPage();
     }
 
+    #[\Override]
     public function count(): int
     {
         return $this->pagerItem->count();
     }
 
+    #[\Override]
     public function getIterator(): \Traversable
     {
         foreach ($this->pagerItem as $key => $item) {

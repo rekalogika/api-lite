@@ -38,6 +38,7 @@ final class MappingPaginatorDecorator implements \IteratorAggregate, PaginatorIn
     /**
      * @return \Traversable<T>
      */
+    #[\Override]
     public function getIterator(): \Traversable
     {
         foreach ($this->paginator as $item) {
@@ -45,26 +46,31 @@ final class MappingPaginatorDecorator implements \IteratorAggregate, PaginatorIn
         }
     }
 
+    #[\Override]
     public function getLastPage(): float
     {
         return $this->paginator->getLastPage();
     }
 
+    #[\Override]
     public function getTotalItems(): float
     {
         return $this->paginator->getTotalItems();
     }
 
+    #[\Override]
     public function getCurrentPage(): float
     {
         return $this->paginator->getCurrentPage();
     }
 
+    #[\Override]
     public function getItemsPerPage(): float
     {
         return $this->paginator->getItemsPerPage();
     }
 
+    #[\Override]
     public function count(): int
     {
         return $this->paginator->count();

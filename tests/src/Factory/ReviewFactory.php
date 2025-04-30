@@ -62,6 +62,7 @@ final class ReviewFactory extends ModelFactory
      *
      * @todo add your default values here
      */
+    #[\Override]
     protected function getDefaults(): array
     {
         return [
@@ -73,6 +74,7 @@ final class ReviewFactory extends ModelFactory
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
      */
+    #[\Override]
     protected function initialize(): self
     {
         return $this
@@ -80,6 +82,7 @@ final class ReviewFactory extends ModelFactory
         ;
     }
 
+    #[\Override]
     protected static function getClass(): string
     {
         return Review::class;

@@ -16,7 +16,7 @@ namespace Rekalogika\ApiLite\PaginatorApplier\Exception;
 use Rekalogika\ApiLite\Exception\UnexpectedValueException;
 use Rekalogika\ApiLite\PaginatorApplier\PaginatorApplierInterface;
 
-class UnsupportedObjectException extends UnexpectedValueException
+final class UnsupportedObjectException extends UnexpectedValueException
 {
     /**
      * @template T of object

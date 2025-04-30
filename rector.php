@@ -19,7 +19,6 @@ use Rector\Strict\Rector\Ternary\DisallowedShortTernaryRuleFixerRector;
 use Rector\ValueObject\PhpVersion;
 
 return RectorConfig::configure()
-    ->withPhpVersion(PhpVersion::PHP_83)
     ->withPaths([
         __DIR__ . '/src',
         __DIR__ . '/tests/bin',
@@ -27,18 +26,19 @@ return RectorConfig::configure()
         __DIR__ . '/tests/public',
         __DIR__ . '/tests/src',
     ])
-    ->withPreparedSets(
-        deadCode: true,
-        codeQuality: true,
-        codingStyle: true,
-        typeDeclarations: true,
-        privatization: true,
-        instanceOf: true,
-        strictBooleans: true,
-        symfonyCodeQuality: true,
-        doctrineCodeQuality: true,
-    )
-    ->withPhpSets(php82: true)
+    // ->withPhpVersion(PhpVersion::PHP_83)
+    // ->withPreparedSets(
+    //     deadCode: true,
+    //     codeQuality: true,
+    //     codingStyle: true,
+    //     typeDeclarations: true,
+    //     privatization: true,
+    //     instanceOf: true,
+    //     strictBooleans: true,
+    //     symfonyCodeQuality: true,
+    //     doctrineCodeQuality: true,
+    // )
+    // ->withPhpSets(php82: true)
     ->withRules([
         AddOverrideAttributeToOverriddenMethodsRector::class,
     ])

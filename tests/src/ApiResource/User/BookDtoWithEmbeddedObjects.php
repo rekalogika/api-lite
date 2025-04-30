@@ -21,7 +21,7 @@ use Symfony\Component\Uid\Uuid;
         ),
     ]
 )]
-class BookDtoWithEmbeddedObjects
+final class BookDtoWithEmbeddedObjects
 {
     public ?Uuid $id = null;
     public ?string $title = null;

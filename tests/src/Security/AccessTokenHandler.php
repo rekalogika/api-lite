@@ -9,8 +9,9 @@ use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Http\AccessToken\AccessTokenHandlerInterface;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 
-class AccessTokenHandler implements AccessTokenHandlerInterface
+final class AccessTokenHandler implements AccessTokenHandlerInterface
 {
+    #[\Override]
     public function getUserBadgeFrom(string $accessToken): UserBadge
     {
         return match ($accessToken) {

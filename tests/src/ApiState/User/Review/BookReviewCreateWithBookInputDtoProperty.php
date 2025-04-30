@@ -14,13 +14,14 @@ use Rekalogika\ApiLite\State\AbstractProcessor;
 /**
  * @extends AbstractProcessor<ReviewInputDtoWithBookDtoPropertyWritableLinkTrue,ReviewDto>
  */
-class BookReviewCreateWithBookInputDtoProperty extends AbstractProcessor
+final class BookReviewCreateWithBookInputDtoProperty extends AbstractProcessor
 {
     public function __construct(
         private EntityManagerInterface $entityManager,
     ) {
     }
 
+    #[\Override]
     public function process(
         mixed $data,
         Operation $operation,

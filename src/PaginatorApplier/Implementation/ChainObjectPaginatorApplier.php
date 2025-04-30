@@ -20,7 +20,7 @@ use Rekalogika\ApiLite\PaginatorApplier\PaginatorApplierInterface;
 /**
  * @implements PaginatorApplierInterface<object>
  */
-class ChainObjectPaginatorApplier implements PaginatorApplierInterface
+final class ChainObjectPaginatorApplier implements PaginatorApplierInterface
 {
     /**
      * @param iterable<PaginatorApplierInterface<object>> $objectPaginators
@@ -29,6 +29,7 @@ class ChainObjectPaginatorApplier implements PaginatorApplierInterface
         private iterable $objectPaginators,
     ) {}
 
+    #[\Override]
     public function applyPaginator(
         object $object,
         Operation $operation,

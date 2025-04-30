@@ -23,12 +23,13 @@ use Rekalogika\Rekapager\ApiPlatform\PagerFactoryInterface;
  * @template TOutputMember of object
  * @implements PaginatorApplierInterface<TOutputMember>
  */
-class RekapagerPageablePaginatorApplier implements PaginatorApplierInterface
+final class RekapagerPageablePaginatorApplier implements PaginatorApplierInterface
 {
     public function __construct(
         private PagerFactoryInterface $pagerFactory,
     ) {}
 
+    #[\Override]
     public function applyPaginator(
         object $object,
         Operation $operation,
