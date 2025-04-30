@@ -37,11 +37,13 @@ final class MappingPagerDecorator implements \IteratorAggregate, TraversablePage
         private ?Context $context = null,
     ) {}
 
+    #[\Override]
     public function getProximity(): int
     {
         return $this->pager->getProximity();
     }
 
+    #[\Override]
     public function withProximity(int $proximity): static
     {
         /** @var TraversablePagerInterface<TKey,T> */
@@ -56,6 +58,7 @@ final class MappingPagerDecorator implements \IteratorAggregate, TraversablePage
         );
     }
 
+    #[\Override]
     public function getCurrentPage(): PagerItemInterface
     {
         return new MappingPagerItemDecorator(
@@ -65,6 +68,7 @@ final class MappingPagerDecorator implements \IteratorAggregate, TraversablePage
         );
     }
 
+    #[\Override]
     public function getPreviousPage(): ?PagerItemInterface
     {
         $page = $this->pager->getPreviousPage();
@@ -80,6 +84,7 @@ final class MappingPagerDecorator implements \IteratorAggregate, TraversablePage
         );
     }
 
+    #[\Override]
     public function getNextPage(): ?PagerItemInterface
     {
         $page = $this->pager->getNextPage();
@@ -95,6 +100,7 @@ final class MappingPagerDecorator implements \IteratorAggregate, TraversablePage
         );
     }
 
+    #[\Override]
     public function getFirstPage(): ?PagerItemInterface
     {
         $page = $this->pager->getFirstPage();
@@ -110,6 +116,7 @@ final class MappingPagerDecorator implements \IteratorAggregate, TraversablePage
         );
     }
 
+    #[\Override]
     public function getLastPage(): ?PagerItemInterface
     {
         $page = $this->pager->getLastPage();
@@ -125,16 +132,19 @@ final class MappingPagerDecorator implements \IteratorAggregate, TraversablePage
         );
     }
 
+    #[\Override]
     public function hasGapToFirstPage(): bool
     {
         return $this->pager->hasGapToFirstPage();
     }
 
+    #[\Override]
     public function hasGapToLastPage(): bool
     {
         return $this->pager->hasGapToLastPage();
     }
 
+    #[\Override]
     public function getPreviousNeighboringPages(): iterable
     {
         foreach ($this->pager->getPreviousNeighboringPages() as $page) {
@@ -146,6 +156,7 @@ final class MappingPagerDecorator implements \IteratorAggregate, TraversablePage
         }
     }
 
+    #[\Override]
     public function getNextNeighboringPages(): iterable
     {
         foreach ($this->pager->getNextNeighboringPages() as $page) {
@@ -157,6 +168,7 @@ final class MappingPagerDecorator implements \IteratorAggregate, TraversablePage
         }
     }
 
+    #[\Override]
     public function getIterator(): \Traversable
     {
         foreach ($this->pager as $key => $item) {

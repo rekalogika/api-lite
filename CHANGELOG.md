@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.9.0
+
+* chore: modernize
+
 ## 0.8.3
 
 * deps: bump rekapager

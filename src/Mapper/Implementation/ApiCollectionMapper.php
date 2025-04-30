@@ -34,6 +34,7 @@ final class ApiCollectionMapper implements ApiCollectionMapperInterface
         private PaginatorApplierInterface $paginatorApplier,
     ) {}
 
+    #[\Override]
     public function mapCollection(
         object $collection,
         ?string $target,

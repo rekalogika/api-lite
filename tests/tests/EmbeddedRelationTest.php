@@ -16,7 +16,7 @@ namespace Rekalogika\ApiLite\Tests;
 use App\Entity\Book;
 use App\Entity\Review;
 
-class EmbeddedRelationTest extends ApiLiteTestCase
+final class EmbeddedRelationTest extends ApiLiteTestCase
 {
     public function testPostWithRelatedIdInUrl(): void
     {

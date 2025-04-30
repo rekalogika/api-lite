@@ -3,4 +3,5 @@ vendor/
 .phpunit.cache
 tools
 .php-cs-fixer.cache
-var
+tests/var
+rector.log

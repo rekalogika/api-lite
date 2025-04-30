@@ -27,7 +27,7 @@ use Symfony\Component\Uid\Uuid;
         ),
     ]
 )]
-class BookDto
+final class BookDto
 {
     public ?Uuid $id = null;
     public ?string $title = null;

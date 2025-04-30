@@ -7,7 +7,7 @@ namespace App\ApiInput\User;
 use ApiPlatform\Metadata\ApiProperty;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class ReviewInputDto
+final class ReviewInputDto
 {
     public string $body;
 

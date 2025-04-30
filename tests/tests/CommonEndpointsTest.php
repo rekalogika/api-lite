@@ -15,7 +15,7 @@ namespace Rekalogika\ApiLite\Tests;
 
 use App\Entity\Book;
 
-class CommonEndpointsTest extends ApiLiteTestCase
+final class CommonEndpointsTest extends ApiLiteTestCase
 {
     public function testGetCollection(): void
     {
@@ -38,7 +38,9 @@ class CommonEndpointsTest extends ApiLiteTestCase
             '@type' => 'hydra:Collection',
         ]);
 
+        // @phpstan-ignore offsetAccess.nonOffsetAccessible
         $nextUrl = $response->toArray()['hydra:view']['hydra:next'] ?? null;
+        // @phpstan-ignore offsetAccess.nonOffsetAccessible
         $lastUrl = $response->toArray()['hydra:view']['hydra:last'] ?? null;
         static::assertIsString($nextUrl);
         static::assertIsString($lastUrl);

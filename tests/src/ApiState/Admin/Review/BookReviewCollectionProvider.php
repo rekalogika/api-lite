@@ -13,13 +13,14 @@ use Rekalogika\ApiLite\State\AbstractProvider;
 /**
  * @extends AbstractProvider<ReviewDto>
  */
-class BookReviewCollectionProvider extends AbstractProvider
+final class BookReviewCollectionProvider extends AbstractProvider
 {
     public function __construct(
         private BookRepository $bookRepository
     ) {
     }
 
+    #[\Override]
     public function provide(
         Operation $operation,
         array $uriVariables = [],

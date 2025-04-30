@@ -13,4 +13,7 @@ declare(strict_types=1);
 
 namespace Rekalogika\ApiLite\Exception;
 
-class LogicException extends \LogicException implements ExceptionInterface {}
+/**
+ * @api
+ */
+final class LogicException extends \LogicException implements ExceptionInterface {}

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Rekalogika\ApiLite\Tests;
 
-class OpenApiTest extends ApiLiteTestCase
+final class OpenApiTest extends ApiLiteTestCase
 {
     public function testOpenApi(): void
     {

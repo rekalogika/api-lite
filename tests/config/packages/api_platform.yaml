@@ -24,7 +24,7 @@ api_platform:
             skip_null_values: false
     mapping:
         paths:
-            - '%kernel.project_dir%/tests/src/ApiResource'
+            - '%kernel.project_dir%/src/ApiResource'
     swagger:
         api_keys:
             Authorization:

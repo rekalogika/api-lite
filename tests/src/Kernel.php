@@ -24,7 +24,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Zenstruck\Foundry\ZenstruckFoundryBundle;
 
-class Kernel extends BaseKernel
+final class Kernel extends BaseKernel
 {
     use MicroKernelTrait {
         registerContainerConfiguration as private baseRegisterContainerConfiguration;
@@ -41,6 +41,7 @@ class Kernel extends BaseKernel
         parent::__construct($environment, $debug);
     }
 
+    #[\Override]
     public function registerBundles(): iterable
     {
         yield new FrameworkBundle();
@@ -58,11 +59,7 @@ class Kernel extends BaseKernel
         yield new ZenstruckFoundryBundle();
     }
 
-    public function getConfigDir(): string
-    {
-        return __DIR__ . '/../config/';
-    }
-
+    #[\Override]
     public function registerContainerConfiguration(LoaderInterface $loader): void
     {
         $this->baseRegisterContainerConfiguration($loader);
@@ -85,5 +82,17 @@ class Kernel extends BaseKernel
                 ]);
             }
         });
+    }
+
+    #[\Override]
+    public function getProjectDir(): string
+    {
+        $result = realpath(__DIR__ . '/..');
+
+        if ($result === false) {
+            throw new \RuntimeException('Unable to resolve project directory');
+        }
+
+        return $result;
     }
 }

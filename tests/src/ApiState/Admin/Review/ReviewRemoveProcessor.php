@@ -13,7 +13,7 @@ use Rekalogika\ApiLite\State\AbstractProcessor;
 /**
  * @extends AbstractProcessor<void,void>
  */
-class ReviewRemoveProcessor extends AbstractProcessor
+final class ReviewRemoveProcessor extends AbstractProcessor
 {
     public function __construct(
         private ReviewRepository $reviewRepository,
@@ -21,6 +21,7 @@ class ReviewRemoveProcessor extends AbstractProcessor
     ) {
     }
 
+    #[\Override]
     public function process(
         mixed $data,
         Operation $operation,

@@ -38,6 +38,7 @@ abstract class AbstractState implements ServiceSubscriberInterface
         $this->container = $container;
     }
 
+    #[\Override]
     public static function getSubscribedServices(): array
     {
         return [
@@ -138,7 +139,7 @@ abstract class AbstractState implements ServiceSubscriberInterface
     protected function denyAccessUnlessGranted(
         mixed $attribute,
         mixed $subject = null,
-        string $message = 'Access Denied.'
+        string $message = 'Access Denied.',
     ): void {
         if (!$this->isGranted($attribute, $subject)) {
             $exception = $this->createAccessDeniedException($message);
@@ -158,7 +159,7 @@ abstract class AbstractState implements ServiceSubscriberInterface
      */
     protected function createNotFoundException(
         string $message = 'Not Found',
-        ?\Throwable $previous = null
+        ?\Throwable $previous = null,
     ): NotFoundException {
         return new NotFoundException($message, $previous);
     }
@@ -174,7 +175,7 @@ abstract class AbstractState implements ServiceSubscriberInterface
      */
     protected function createAccessDeniedException(
         string $message = 'Access Denied.',
-        ?\Throwable $previous = null
+        ?\Throwable $previous = null,
     ): AccessDeniedException {
         if (!class_exists(AccessDeniedException::class)) {
             throw new \LogicException('You cannot use the "createAccessDeniedException" method if the Security component is not available. Try running "composer require symfony/security-bundle".');

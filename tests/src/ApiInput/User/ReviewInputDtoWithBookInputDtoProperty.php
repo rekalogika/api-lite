@@ -6,7 +6,7 @@ namespace App\ApiInput\User;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class ReviewInputDtoWithBookInputDtoProperty
+final class ReviewInputDtoWithBookInputDtoProperty
 {
     public BookInputDto $book;
 

@@ -13,13 +13,14 @@ use Rekalogika\ApiLite\State\AbstractProvider;
 /**
  * @extends AbstractProvider<ReviewDtoWithEmbeddedResource>
  */
-class ReviewProviderWithEmbeddedResource extends AbstractProvider
+final class ReviewProviderWithEmbeddedResource extends AbstractProvider
 {
     public function __construct(
         private ReviewRepository $reviewRepository
     ) {
     }
 
+    #[\Override]
     public function provide(
         Operation $operation,
         array $uriVariables = [],

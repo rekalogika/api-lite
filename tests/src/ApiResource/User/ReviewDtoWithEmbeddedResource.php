@@ -20,7 +20,7 @@ use Symfony\Component\Uid\Uuid;
         ),
     ]
 )]
-class ReviewDtoWithEmbeddedResource
+final class ReviewDtoWithEmbeddedResource
 {
     public ?Uuid $id = null;
     public ?string $body = null;

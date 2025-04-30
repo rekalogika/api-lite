@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Rekalogika\ApiLite\Tests;
 
-class SubresourceTest extends ApiLiteTestCase
+final class SubresourceTest extends ApiLiteTestCase
 {
     public function testGetCollectionSubresource(): void
     {

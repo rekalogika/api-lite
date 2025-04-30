@@ -75,7 +75,7 @@ use Symfony\Component\Uid\Uuid;
         ),
     ]
 )]
-class ReviewDto
+final class ReviewDto
 {
     public ?Uuid $id = null;
     public ?string $body = null;

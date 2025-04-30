@@ -14,7 +14,7 @@ use Rekalogika\ApiLite\State\AbstractProcessor;
 /**
  * @extends AbstractProcessor<void,BookDto>
  */
-class BookCheckProcessor extends AbstractProcessor
+final class BookCheckProcessor extends AbstractProcessor
 {
     public function __construct(
         private EntityManagerInterface $entityManager,
@@ -22,6 +22,7 @@ class BookCheckProcessor extends AbstractProcessor
     ) {
     }
 
+    #[\Override]
     public function process(
         mixed $data,
         Operation $operation,

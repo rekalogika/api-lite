@@ -24,12 +24,13 @@ use Rekalogika\ApiLite\PaginatorApplier\PaginatorApplierInterface;
  * @template TOutputMember of object
  * @implements PaginatorApplierInterface<TOutputMember>
  */
-class CollectionPaginatorApplier implements PaginatorApplierInterface
+final class CollectionPaginatorApplier implements PaginatorApplierInterface
 {
     use PaginationTrait;
 
     public function __construct(private Pagination $pagination) {}
 
+    #[\Override]
     public function applyPaginator(
         object $object,
         Operation $operation,

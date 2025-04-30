@@ -19,13 +19,14 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @extends AbstractProvider<BookDto>
  */
-class BookCollectionWithSearchProvider extends AbstractProvider
+final class BookCollectionWithSearchProvider extends AbstractProvider
 {
     public function __construct(
         private BookRepository $bookRepository
     ) {
     }
 
+    #[\Override]
     public function provide(
         Operation $operation,
         array $uriVariables = [],

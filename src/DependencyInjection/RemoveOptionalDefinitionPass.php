@@ -28,6 +28,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 final readonly class RemoveOptionalDefinitionPass implements CompilerPassInterface
 {
+    #[\Override]
     public function process(ContainerBuilder $container): void
     {
         if (!interface_exists(PagerfantaInterface::class)) {

@@ -30,50 +30,40 @@ final class PagerfantaPaginator implements \IteratorAggregate, PaginatorInterfac
         private readonly PagerfantaInterface $pagerfanta,
     ) {}
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getCurrentPage(): float
     {
         return $this->pagerfanta->getCurrentPage();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getLastPage(): float
     {
         return $this->pagerfanta->getNbPages();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getItemsPerPage(): float
     {
         return $this->pagerfanta->getMaxPerPage();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getTotalItems(): float
     {
         return $this->pagerfanta->getNbResults();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function count(): int
     {
         return $this->pagerfanta->count();
     }
 
     /**
-     * {@inheritdoc}
      * @return \Traversable<T>
      */
+    #[\Override]
     public function getIterator(): \Traversable
     {
         return $this->pagerfanta->getIterator();

@@ -37,21 +37,24 @@ final class CollectionPaginator implements \IteratorAggregate, PaginatorInterfac
         private readonly float $currentPage,
         private readonly float $itemsPerPage,
     ) {
-        $this->items = $collection->slice((int) (($currentPage - 1) * $itemsPerPage), $itemsPerPage > 0 ? (int) $itemsPerPage : null);
+        $itemsPerPage = (int) $itemsPerPage;
+        $currentPage = (int) $currentPage;
+
+        $this->items = $collection->slice(
+            offset: ($currentPage - 1) * $itemsPerPage,
+            length: $itemsPerPage > 0 ? $itemsPerPage : null,
+        );
+
         $this->totalItems = $collection->count();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getCurrentPage(): float
     {
         return $this->currentPage;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getLastPage(): float
     {
         if (0. >= $this->itemsPerPage) {
@@ -61,34 +64,28 @@ final class CollectionPaginator implements \IteratorAggregate, PaginatorInterfac
         return max(ceil($this->totalItems / $this->itemsPerPage) ?: 1., 1.);
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getItemsPerPage(): float
     {
         return $this->itemsPerPage;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getTotalItems(): float
     {
         return $this->totalItems;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function count(): int
     {
         return \count($this->items);
     }
 
     /**
-     * {@inheritdoc}
      * @return \Traversable<T>
      */
+    #[\Override]
     public function getIterator(): \Traversable
     {
         yield from $this->items;
