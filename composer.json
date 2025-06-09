@@ -73,7 +73,7 @@
         "symfony/yaml": "^6.4 || ^7.0",
         "twig/twig": "^3.8",
         "vimeo/psalm": "^6.0",
-        "zenstruck/foundry": "1.37.*"
+        "zenstruck/foundry": "2.6.*"
     },
     "autoload": {
         "psr-4": {
